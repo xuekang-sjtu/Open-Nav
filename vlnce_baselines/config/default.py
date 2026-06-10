@@ -232,4 +232,6 @@ def get_config(
 
 
 # Expose config for direct access
+_C.LOG_FILE = "log.txt"
+
 cfg = _C
