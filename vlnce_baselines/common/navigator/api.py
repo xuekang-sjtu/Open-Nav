@@ -115,10 +115,12 @@ class spatialClient:
                 self.spatialbot_path,
                 trust_remote_code=True)
             
-            self.ram_transform = get_transform(image_size=224) 
+            self.ram_transform = get_transform(image_size=224)
             self.ram_model = ram(pretrained=self.ram_path, image_size=224, vit='swin_l').eval().to(self.device)
         except Exception as e:
-            print(f"Error in loading RAM or SpatialBot: {e}")
+            raise RuntimeError(
+                "Open-Nav requires local SpatialBot3B and RAM dependencies for faithful visual perception."
+            ) from e
             
     def ram_img_tagging(self, image):
         ram_img = self.ram_transform(image).unsqueeze(0).to(self.device)
