@@ -45,10 +45,21 @@ class llmClient:
             self.model = model_type
             self.client = OpenAI(
                 api_key="not-needed",  # This value doesn't matter for local deployment
-                base_url="http://0.0.0.0:23333/v1"
+                base_url=os.environ.get("OPENAI_BASE_URL", "http://0.0.0.0:23333/v1")
+            )
+        elif "glm" in model_type.lower():
+            self.model = model_type
+            self.client = OpenAI(
+                api_key=api_key,
+                base_url="https://models.sjtu.edu.cn/api/v1"
             )
         else:
-            raise ValueError(f"Unknown model type: {model_type}. Use 'gpt' or 'opensource'.")
+            self.model = model_type
+            effective_base_url = os.environ.get("OPENAI_BASE_URL") or base_url or "https://models.sjtu.edu.cn/api/v1"
+            self.client = OpenAI(
+                api_key=api_key,
+                base_url=effective_base_url
+            )
         
         print(f"Initialized LLM client with model: {self.model}")
 
@@ -70,16 +81,21 @@ class llmClient:
             "messages": messages,
             "temperature": 0
         }
-        
+        max_tokens = int(os.environ.get("OPENAI_MAX_TOKENS", "2048"))
+        request_params["max_tokens"] = max_tokens
+
         if num_output == 1:
             chat_response = self._completion_with_backoff(**request_params)
-            answer = chat_response.choices[0].message.content
+            message = chat_response.choices[0].message
+            answer = message.content if message.content is not None else (getattr(message, "reasoning", None) or "")
             return answer
         else:
             responses = []
             for _ in range(num_output):
                 chat_response = self._completion_with_backoff(**request_params)
-                responses.append(chat_response.choices[0].message.content)
+                msg = chat_response.choices[0].message
+                c = msg.content if msg.content is not None else (getattr(msg, "reasoning", None) or "")
+                responses.append(c)
             return responses
 
     
