@@ -46,22 +46,33 @@ def main():
         required=True,
         help="API key for accessing the LLM service",
     )
+    parser.add_argument(
+        "--cross-floor-filter",
+        type=str,
+        default=None,
+        choices=["r2r-100", "r2r-all", "rxr-100", "rxr-all"],
+        help="Only run cross-floor episodes",
+    )
     args = parser.parse_args()
+
+    # Filter out our custom arguments from opts to avoid config errors
+    filtered_opts = []
+    if args.opts:
+        i = 0
+        while i < len(args.opts):
+            if args.opts[i] == '--cross-floor-filter':
+                i += 2
+            else:
+                filtered_opts.append(args.opts[i])
+                i += 1
+    args.opts = filtered_opts
     run_exp(**vars(args))
     
-def run_exp(exp_name: str, exp_config: str, 
+def run_exp(exp_name: str, exp_config: str,
             opts=None, local_rank=None,
-            llm: str = None, api_key: str = None, episodes_to_load: int = 0) -> None:
+            llm: str = None, api_key: str = None,
+            episodes_to_load: int = 0, cross_floor_filter: str = None) -> None:
     r"""Runs experiment given mode and config
-
-    Args:
-        exp_config: path to config file.
-        run_type: "train" or "eval.
-        opts: list of strings of additional config options.
-        llm: The LLM model to be used (e.g., gpt-4o-2024-08-06).
-        api_key: API key for accessing the LLM service.
-    Returns:
-        None.
     """
     config = get_config(exp_config, opts)
     config.defrost()
@@ -73,13 +84,18 @@ def run_exp(exp_name: str, exp_config: str,
     config.LOG_FILE = exp_name + '_' + config.LOG_FILE
 
     config.TASK_CONFIG.SEED = 0
-
     config.local_rank = local_rank
 
     if llm is not None:
         config.LLM = llm
     if api_key is not None:
         config.API_KEY = api_key
+
+    if cross_floor_filter is not None:
+        from cross_floor_filter import get_cross_floor_episode_ids
+        allowed = get_cross_floor_episode_ids(cross_floor_filter)
+        config.TASK_CONFIG.DATASET.EPISODES_ALLOWED = allowed
+        print(f"Cross-floor filter [{cross_floor_filter}]: {len(allowed)} episodes")
 
     config.freeze()
     

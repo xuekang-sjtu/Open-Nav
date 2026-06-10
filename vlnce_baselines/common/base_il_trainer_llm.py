@@ -605,6 +605,13 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         trajectories = gt_data
         self.trajectories = gt_data
         trajectories = list(trajectories.keys())[self.config.local_rank::self.config.GPU_NUMBERS]
+        # Apply cross-floor filter if EPISODES_ALLOWED is explicitly set
+        allowed = self.config.TASK_CONFIG.DATASET.EPISODES_ALLOWED
+        if allowed is not None:
+            allowed_set = set(allowed)
+            # trajectories are always str (JSON dict keys); allowed may be int or str
+            trajectories = [t for t in trajectories
+                            if t in allowed_set or int(t) in allowed_set]
         return trajectories
         
     def eval(self) -> None:
