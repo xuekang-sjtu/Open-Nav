@@ -6,6 +6,13 @@ import numpy as np
 import sys
 import os
 
+# Resolve project root for shared model/data paths (cross-platform)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
+# Add recognize_anything code to path
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "models", "recognize_anything_code"))
+# Add SpatialBot3B to path
+sys.path.insert(0, PROJECT_ROOT)
+
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 import transformers
@@ -103,8 +110,8 @@ class llmClient:
 class spatialClient:
     def __init__(self, device):
         self.device = device
-        self.ram_path = "./recognize_anything/pretrained/ram_swin_large_14m.pth"
-        self.spatialbot_path = "./SpatialBot3B"
+        self.ram_path = os.path.join(PROJECT_ROOT, "models", "recognize_anything", "pretrained", "ram_swin_large_14m.pth")
+        self.spatialbot_path = os.path.join(PROJECT_ROOT, "models", "SpatialBot3B")
         view_record_path = "cache_files/view_cache.json"
         try:
             self.spatialbot_model = AutoModelForCausalLM.from_pretrained(

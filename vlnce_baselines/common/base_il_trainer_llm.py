@@ -4,6 +4,9 @@ import jsonlines
 import os
 import time
 import warnings
+
+# Resolve project root for shared model paths (cross-platform)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
 from collections import defaultdict
 from typing import Dict, List
 from PIL import Image
@@ -95,7 +98,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         self.waypoint_predictor = BinaryDistPredictor_TRM(device=self.device)
         self.waypoint_predictor.load_state_dict(
             torch.load(
-                './waypoint_prediction/checkpoints/check_val_best_avg_wayscore',
+                os.path.join(PROJECT_ROOT, "models", "waypoint_prediction", "checkpoints", "check_val_best_avg_wayscore"),
                 map_location = torch.device('cpu'),
             )['predictor']['state_dict']
         )
