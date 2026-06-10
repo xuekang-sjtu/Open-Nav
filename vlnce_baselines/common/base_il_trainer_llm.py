@@ -58,9 +58,8 @@ from ..models.utils import (
     length2mask, dir_angle_feature, dir_angle_feature_with_ele,
 )
 
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore", category=FutureWarning)
-    import tensorflow as tf  # noqa: F401
+# TensorFlow import removed - not used in this codebase
+# Original: with warnings.catch_warnings(): warnings.filterwarnings("ignore", category=FutureWarning); import tensorflow as tf
 
 class BaseVLNCETrainerLLM(BaseILTrainer):
     r"""A base trainer for VLN-CE imitation learning."""
@@ -276,7 +275,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             )
             if os.path.exists(fname):
                 print(f"skipping -- evaluation exists. File path: {fname}")
-                user_input = input("Do you want to overwrite the results? (yes/no): ").strip().lower()
+                user_input = os.environ.get("OVERWRITE_RESULTS", "yes").strip().lower()
                 if user_input != "yes":
                     print("Skipping evaluation.")
                     return
@@ -556,7 +555,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 sum(v[stat_key] for v in stats_episodes.values())
                 / num_episodes
             )
-        total = torch.tensor(num_episodes).cuda()
+        total = torch.tensor(num_episodes).cpu()
         if self.world_size > 1:
             dist.reduce(total,dst=0)
         total = total.item()

@@ -16,12 +16,9 @@ def reduce_loss(tensor, rank, world_size):
 
 def gather_list_and_concat(list_of_nums,world_size):
     if not torch.is_tensor(list_of_nums):
-        tensor = torch.Tensor(list_of_nums).cuda()
+        tensor = torch.Tensor(list_of_nums).cpu()
     else:
-        if list_of_nums.is_cuda == False:
-            tensor = list_of_nums.cuda()
-        else:
-            tensor = list_of_nums
+        tensor = list_of_nums.cpu() if list_of_nums.is_cuda else list_of_nums
     gather_t = [torch.ones_like(tensor) for _ in
                 range(world_size)]
     dist.all_gather(gather_t, tensor)

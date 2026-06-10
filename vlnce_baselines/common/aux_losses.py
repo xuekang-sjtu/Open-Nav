@@ -23,7 +23,7 @@ class _AuxLosses:
 
     def reduce(self, mask):
         assert self.is_active()
-        total = torch.tensor(0.0).cuda()
+        total = torch.tensor(0.0).cpu()
 
         for k in self._losses.keys():
             k_loss = torch.masked_select(self._losses[k], mask).mean()

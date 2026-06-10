@@ -17,16 +17,20 @@ def extract_instruction_tokens(
             isinstance(observations[i][instruction_sensor_uuid], dict)
             and tokens_uuid in observations[i][instruction_sensor_uuid]
         ):
-            observations[i][instruction_sensor_uuid] = observations[i][
-                instruction_sensor_uuid
-            ]["tokens"]
+            token_val = observations[i][instruction_sensor_uuid]["tokens"]
+            if token_val is not None:
+                observations[i][instruction_sensor_uuid] = token_val
+            else:
+                # For datasets without tokenized instructions (e.g., RxR),
+                # replace with empty list so batch_obs can handle it.
+                observations[i][instruction_sensor_uuid] = []
         else:
             break
     return observations
 
 def gather_list_and_concat(list_of_nums,world_size):
     if not torch.is_tensor(list_of_nums):
-        tensor = torch.Tensor(list_of_nums).cuda()
+        tensor = torch.Tensor(list_of_nums).cpu()
     else:
         if list_of_nums.is_cuda == False:
             tensor = list_of_nums.cuda()
