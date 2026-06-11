@@ -8,10 +8,11 @@ import os
 
 # Resolve project root for shared model/data paths (cross-platform)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
+MODELS_ROOT = os.path.join(PROJECT_ROOT, "models")
 # Add recognize_anything code to path
-sys.path.insert(0, os.path.join(PROJECT_ROOT, "models", "recognize_anything_code"))
-# Add SpatialBot3B to path
-sys.path.insert(0, PROJECT_ROOT)
+sys.path.insert(0, os.path.join(MODELS_ROOT, "recognize_anything_code"))
+# Add the parent directory of SpatialBot3B so `import SpatialBot3B...` works
+sys.path.insert(0, MODELS_ROOT)
 
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 
@@ -29,9 +30,9 @@ transformers.logging.set_verbosity_error()
 transformers.logging.disable_progress_bar()
 warnings.filterwarnings('ignore')
 
-from recognize_anything.ram.models import ram
-from recognize_anything.ram import inference_ram
-from recognize_anything.ram import get_transform
+from ram.models import ram
+from ram import inference_ram
+from ram import get_transform
 
 
 
