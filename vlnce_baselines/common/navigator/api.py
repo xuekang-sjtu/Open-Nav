@@ -113,17 +113,49 @@ class spatialClient:
         self.device = device
         self.ram_path = os.path.join(PROJECT_ROOT, "models", "recognize_anything", "pretrained", "ram_swin_large_14m.pth")
         self.spatialbot_path = os.path.join(PROJECT_ROOT, "models", "SpatialBot3B")
+        self.spatialbot_device = "cuda" if torch.cuda.is_available() else "cpu"
         view_record_path = "cache_files/view_cache.json"
         try:
-            self.spatialbot_model = AutoModelForCausalLM.from_pretrained(
-                self.spatialbot_path,
-                torch_dtype=torch.float16, # float32 for cpu
-                device_map='auto',
-                trust_remote_code=True)
+            from transformers import BitsAndBytesConfig
+            from transformers.modeling_utils import PreTrainedModel
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True,
+            )
+            original_to = PreTrainedModel.to
+
+            def safe_quantized_to(model, *args, **kwargs):
+                return model
+
+            PreTrainedModel.to = safe_quantized_to
+            try:
+                self.spatialbot_model = AutoModelForCausalLM.from_pretrained(
+                    self.spatialbot_path,
+                    quantization_config=bnb_config,
+                    low_cpu_mem_usage=True,
+                    trust_remote_code=True)
+            finally:
+                PreTrainedModel.to = original_to
+            model_device = getattr(self.spatialbot_model, "device", None)
+            if model_device is not None:
+                self.spatialbot_device = str(model_device)
+        except ImportError:
+            raise RuntimeError(
+                "Open-Nav requires bitsandbytes for 4bit quantized SpatialBot3B loading on limited VRAM. "
+                "Install with: pip install bitsandbytes"
+            )
+        except Exception as e:
+            raise RuntimeError(
+                "Open-Nav requires local SpatialBot3B and RAM dependencies for faithful visual perception."
+            ) from e
+
+        try:
             self.spatialbot_tokenizer = AutoTokenizer.from_pretrained(
                 self.spatialbot_path,
                 trust_remote_code=True)
-            
+
             self.ram_transform = get_transform(image_size=224)
             self.ram_model = ram(pretrained=self.ram_path, image_size=224, vit='swin_l').eval().to(self.device)
         except Exception as e:
@@ -140,7 +172,10 @@ class spatialClient:
         offset_bos = 0
         text = f"A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image 1>\n<image 2>\n{prompt} ASSISTANT:"
         text_chunks = [self.spatialbot_tokenizer(chunk).input_ids for chunk in text.split('<image 1>\n<image 2>\n')]
-        input_ids = torch.tensor(text_chunks[0] + [-201] + [-202] + text_chunks[1][offset_bos:], dtype=torch.long).unsqueeze(0).to(self.device)
+        input_ids = torch.tensor(
+            text_chunks[0] + [-201] + [-202] + text_chunks[1][offset_bos:],
+            dtype=torch.long,
+        ).unsqueeze(0).to(self.spatialbot_device)
         image1 = image_dict['rgb']
         image2 = image_dict['depth']
         channels = len(image2.getbands())
@@ -152,14 +187,15 @@ class spatialClient:
             three_channel_array[:, :, 1] = (img // 32) * 8
             three_channel_array[:, :, 2] = (img % 32) * 8
             image2 = Image.fromarray(three_channel_array, 'RGB')
-        image_tensor = self.spatialbot_model.process_images([image1,image2], self.spatialbot_model.config).to(dtype=self.spatialbot_model.dtype, device=self.device)
-        self.spatialbot_model.get_vision_tower().to('cuda')
+        image_tensor = self.spatialbot_model.process_images(
+            [image1, image2], self.spatialbot_model.config
+        ).to(dtype=torch.float16, device=self.spatialbot_device)
         output_ids = self.spatialbot_model.generate(
             input_ids,
             images=image_tensor,
-            max_new_tokens=200, 
+            max_new_tokens=200,
             use_cache=True,
-            repetition_penalty=1.0 
+            repetition_penalty=1.0
         )[0]
         return self.spatialbot_tokenizer.decode(output_ids[input_ids.shape[1]:], skip_special_tokens=True).strip()
     
