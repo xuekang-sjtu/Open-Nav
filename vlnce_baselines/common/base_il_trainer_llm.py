@@ -99,7 +99,8 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         self.waypoint_predictor.load_state_dict(
             torch.load(
                 os.path.join(PROJECT_ROOT, "models", "waypoint_prediction", "checkpoints", "check_val_best_avg_wayscore"),
-                map_location = torch.device('cpu'),
+                map_location=torch.device('cpu'),
+                weights_only=False,
             )['predictor']['state_dict']
         )
         for param in self.waypoint_predictor.parameters():
@@ -113,7 +114,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         logger.info("Finished setting up waypoint_predictor.")
 
     def load_checkpoint(self, checkpoint_path, *args, **kwargs) -> Dict:
-        return torch.load(checkpoint_path, *args, **kwargs)
+        return torch.load(checkpoint_path, weights_only=False, *args, **kwargs)
 
     @staticmethod
     def _pause_envs(
