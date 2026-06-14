@@ -4,9 +4,12 @@ import jsonlines
 import os
 import time
 import warnings
+from pathlib import Path
 
 # Resolve project root for shared model paths (cross-platform)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 from collections import defaultdict
 from typing import Dict, List
 from PIL import Image
@@ -60,6 +63,11 @@ from ..utils import get_camera_orientations
 from ..models.utils import (
     length2mask, dir_angle_feature, dir_angle_feature_with_ele,
 )
+from shared.ssa import SSAController, ask_ssa_delegate, build_ssa_plan, execute_ssa_takeover
+
+
+def _ssa_front_view(images_dict):
+    return images_dict.get("0")
 
 # TensorFlow import removed - not used in this codebase
 # Original: with warnings.catch_warnings(): warnings.filterwarnings("ignore", category=FutureWarning); import tensorflow as tf
@@ -367,6 +375,13 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             actions_cache = {} 
         
         navigator = Open_Nav(self.device,config.LLM, config.API_KEY)
+        ssa_controller = SSAController(
+            enabled=getattr(config, "SSA_GUIDANCE", False),
+            workspace_root=Path(PROJECT_ROOT),
+            checkpoint_path=getattr(config, "SSA_CHECKPOINT", ""),
+            detect_threshold=float(getattr(config, "SSA_DETECT_THRESHOLD", 0.5)),
+            detector_model_source=getattr(config, "SSA_DETECTOR_MODEL_SOURCE", None),
+        )
         current_step = 0
         nav_history = []
         error_number = 0
@@ -416,10 +431,42 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             
             nav_logger.info("========== Review History ==========")
             history_traj = navigator.review_history(nav_logger, nav_history) if len(nav_history) > 0 else "Step 0 start position. "
+            front_view = _ssa_front_view(images_dict)
+            ssa_takeover_requested = False
+            ssa_plan_result = None
 
             if not stop_flag:
                 nav_logger.info("========== Estimate Completion Progress ==========")
                 estimation = navigator.estimate_completion(nav_logger, actions, landmarks, history_traj)
+
+                if front_view is not None:
+                    ssa_proposal = ssa_controller.update_proposal(
+                        instruction=instruction,
+                        previous_output=history_traj,
+                        previous_plan=actions,
+                        rgb=np.asarray(front_view["rgb"]),
+                        depth=np.asarray(front_view["depth"]),
+                    )
+                else:
+                    ssa_proposal = {"available": False}
+                if ssa_proposal.get("available", False):
+                    should_delegate = ask_ssa_delegate(
+                        infer_fn=lambda system_prompt, user_prompt: navigator.llm.gpt_infer(
+                            system_prompt,
+                            user_prompt,
+                        ),
+                        instruction=instruction,
+                        current_stage=estimation,
+                        history=history_traj,
+                        observation_hint=observe_dict.get("0", ""),
+                    )
+                    if should_delegate:
+                        ssa_plan_result = build_ssa_plan(envs, 0, ssa_proposal["estimate"])
+                        if ssa_plan_result.get("error") or not ssa_plan_result.get("actions"):
+                            nav_logger.info(f"[SSA] plan rejected | reason={ssa_plan_result.get('error', 'ssa_plan_empty')}")
+                            ssa_controller.used_this_episode = True
+                        else:
+                            ssa_takeover_requested = True
                 
                 nav_logger.info("========== Next Action Prediction ==========")
                 predictions, thoughts, break_flag = navigator.move_to_next_vp(nav_logger, current_step, instruction, actions, landmarks, history_traj, estimation, observation, observe_dict)
@@ -432,6 +479,20 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
            
             try:
                 if not stop_flag:
+                    if ssa_takeover_requested and ssa_plan_result is not None:
+                        takeover = execute_ssa_takeover(envs, env_index=0, plan_result=ssa_plan_result)
+                        nav_logger.info(f"[SSA] takeover finished | success={takeover.success} reason={takeover.reason} actions={takeover.actions_executed}")
+                        observations = takeover.observations
+                        dones = takeover.dones
+                        infos = takeover.infos
+                        instruction, images_list = self.generate_input(observations[-1])
+                        observations = extract_instruction_tokens(
+                            observations, self.config.TASK_CONFIG.TASK.INSTRUCTION_SENSOR_UUID
+                        )
+                        batch = batch_obs(observations, self.device)
+                        batch = apply_obs_transforms_batch(batch, obs_transforms)
+                        if not dones[0]:
+                            continue
                     env_actions = []
                     env_actions.append({'action':
                         {'action': 4,
@@ -473,6 +534,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                     
                     current_step = 0
                     nav_history = []
+                    ssa_controller.reset()
                     info = infos[i]
                     metric = {}
                     metric['steps_taken'] = info['steps_taken']
@@ -500,6 +562,13 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
 
                     metric['ndtw'] = nDTW
                     stats_episodes[current_episodes[i].episode_id] = metric 
+                    from resume_utils import append_episode_metric
+                    append_episode_metric(
+                        config.RESULTS_DIR,
+                        f"episode_results_{config.TASK_CONFIG.DATASET.SPLIT}_r{self.local_rank}_w{self.world_size}.json",
+                        current_episodes[i].episode_id,
+                        metric,
+                    )
 
                     observations[i] = envs.reset_at(i)[0]
                     instruction, images_list = self.generate_input(observations[i])
@@ -553,10 +622,14 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         if self.world_size > 1:
             distr.barrier()
         aggregated_stats = {}
-        num_episodes = len(stats_episodes)
-        for stat_key in next(iter(stats_episodes.values())).keys():
+        valid_stats = [value for value in stats_episodes.values() if value is not None]
+        num_episodes = len(valid_stats)
+        if num_episodes == 0:
+            logger.info("No newly evaluated episodes with metrics were produced in this run.")
+            return
+        for stat_key in valid_stats[0].keys():
             aggregated_stats[stat_key] = (
-                sum(v[stat_key] for v in stats_episodes.values())
+                sum(v[stat_key] for v in valid_stats)
                 / num_episodes
             )
         total = torch.tensor(num_episodes).cpu()
@@ -693,4 +766,3 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             
         self.traj = self.collect_val_traj()
         self._eval_llm()
-
