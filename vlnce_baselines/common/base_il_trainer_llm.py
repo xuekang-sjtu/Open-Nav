@@ -69,6 +69,11 @@ from shared.ssa import SSAController, ask_ssa_delegate, build_ssa_plan, execute_
 def _ssa_front_view(images_dict):
     return images_dict.get("0")
 
+
+def _ssa_view_yaw_deg(angle_value):
+    angle_deg = float(np.rad2deg(angle_value))
+    return ((angle_deg + 180.0) % 360.0) - 180.0
+
 # TensorFlow import removed - not used in this codebase
 # Original: with warnings.catch_warnings(): warnings.filterwarnings("ignore", category=FutureWarning); import tensorflow as tf
 
@@ -431,42 +436,12 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             
             nav_logger.info("========== Review History ==========")
             history_traj = navigator.review_history(nav_logger, nav_history) if len(nav_history) > 0 else "Step 0 start position. "
-            front_view = _ssa_front_view(images_dict)
             ssa_takeover_requested = False
             ssa_plan_result = None
 
             if not stop_flag:
                 nav_logger.info("========== Estimate Completion Progress ==========")
                 estimation = navigator.estimate_completion(nav_logger, actions, landmarks, history_traj)
-
-                if front_view is not None:
-                    ssa_proposal = ssa_controller.update_proposal(
-                        instruction=instruction,
-                        previous_output=history_traj,
-                        previous_plan=actions,
-                        rgb=np.asarray(front_view["rgb"]),
-                        depth=np.asarray(front_view["depth"]),
-                    )
-                else:
-                    ssa_proposal = {"available": False}
-                if ssa_proposal.get("available", False):
-                    should_delegate = ask_ssa_delegate(
-                        infer_fn=lambda system_prompt, user_prompt: navigator.llm.gpt_infer(
-                            system_prompt,
-                            user_prompt,
-                        ),
-                        instruction=instruction,
-                        current_stage=estimation,
-                        history=history_traj,
-                        observation_hint=observe_dict.get("0", ""),
-                    )
-                    if should_delegate:
-                        ssa_plan_result = build_ssa_plan(envs, 0, ssa_proposal["estimate"])
-                        if ssa_plan_result.get("error") or not ssa_plan_result.get("actions"):
-                            nav_logger.info(f"[SSA] plan rejected | reason={ssa_plan_result.get('error', 'ssa_plan_empty')}")
-                            ssa_controller.used_this_episode = True
-                        else:
-                            ssa_takeover_requested = True
                 
                 nav_logger.info("========== Next Action Prediction ==========")
                 predictions, thoughts, break_flag = navigator.move_to_next_vp(nav_logger, current_step, instruction, actions, landmarks, history_traj, estimation, observation, observe_dict)
@@ -476,12 +451,78 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 
                 nav_logger.info("========== Test Decision ==========")
                 next_vp, thought, error_number = navigator.test_decisions(nav_logger, fused_pred_thought, observation, instruction, error_number, observe_dict)
+                selected_ssa_view = images_dict.get(next_vp)
+                selected_ssa_yaw_deg = _ssa_view_yaw_deg(radius_dict[next_vp]) if next_vp in radius_dict else 0.0
+                if selected_ssa_view is not None:
+                    ssa_proposal = ssa_controller.update_proposal(
+                        instruction=instruction,
+                        previous_output=history_traj,
+                        previous_plan=actions,
+                        rgb=np.asarray(selected_ssa_view["rgb"]),
+                        depth=np.asarray(selected_ssa_view["depth"]),
+                        view_yaw_deg=selected_ssa_yaw_deg,
+                    )
+                else:
+                    ssa_proposal = {"available": False, "reason": "missing_selected_view"}
+                ssa_controller.record_step_proposal(
+                    step=current_step,
+                    available=bool(ssa_proposal.get("available", False)),
+                    reason=str(ssa_proposal.get("reason", "")),
+                )
+                nav_logger.info(
+                    f"[SSA] step={current_step} episode={current_episodes[0].episode_id} "
+                    f"viewpoint={next_vp} view_yaw_deg={selected_ssa_yaw_deg:.1f} "
+                    f"available={bool(ssa_proposal.get('available', False))} "
+                    f"reason={ssa_proposal.get('reason', '')}"
+                )
+                if ssa_proposal.get("available", False):
+                    should_delegate = ask_ssa_delegate(
+                        infer_fn=lambda system_prompt, user_prompt: navigator.llm.gpt_infer(
+                            system_prompt,
+                            user_prompt,
+                        ),
+                        instruction=instruction,
+                        current_stage=estimation,
+                        history=history_traj,
+                        observation_hint=observe_dict.get(next_vp, ""),
+                    )
+                    ssa_controller.record_delegate_decision(step=current_step, delegated=bool(should_delegate))
+                    if should_delegate:
+                        ssa_plan_result = build_ssa_plan(envs, 0, ssa_proposal["estimate"])
+                        if ssa_plan_result.get("error") or not ssa_plan_result.get("actions"):
+                            nav_logger.info(f"[SSA] plan rejected | reason={ssa_plan_result.get('error', 'ssa_plan_empty')}")
+                            ssa_controller.used_this_episode = True
+                            ssa_controller.record_plan_outcome(
+                                step=current_step,
+                                accepted=False,
+                                reason=str(ssa_plan_result.get("error", "ssa_plan_empty")),
+                                planned_actions=0,
+                            )
+                        else:
+                            ssa_takeover_requested = True
+                            ssa_controller.record_plan_outcome(
+                                step=current_step,
+                                accepted=True,
+                                reason="planned",
+                                planned_actions=len(ssa_plan_result.get("actions", [])),
+                            )
+                            nav_logger.info(
+                                f"[SSA] step={current_step} episode={current_episodes[0].episode_id} delegated=yes planned_actions={len(ssa_plan_result.get('actions', []))}"
+                            )
+                    else:
+                        nav_logger.info(f"[SSA] step={current_step} episode={current_episodes[0].episode_id} delegated=no")
            
             try:
                 if not stop_flag:
                     if ssa_takeover_requested and ssa_plan_result is not None:
                         takeover = execute_ssa_takeover(envs, env_index=0, plan_result=ssa_plan_result)
                         nav_logger.info(f"[SSA] takeover finished | success={takeover.success} reason={takeover.reason} actions={takeover.actions_executed}")
+                        ssa_controller.record_takeover_result(
+                            step=current_step,
+                            success=bool(takeover.success),
+                            reason=str(takeover.reason),
+                            actions_executed=int(takeover.actions_executed),
+                        )
                         observations = takeover.observations
                         dones = takeover.dones
                         infos = takeover.infos
@@ -493,6 +534,8 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                         batch = apply_obs_transforms_batch(batch, obs_transforms)
                         if not dones[0]:
                             continue
+                        dones[0] = True
+                        break
                     env_actions = []
                     env_actions.append({'action':
                         {'action': 4,
@@ -534,6 +577,9 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                     
                     current_step = 0
                     nav_history = []
+                    nav_logger.info(
+                        f"[SSA] episode summary | episode={current_episodes[i].episode_id} {ssa_controller.episode_summary_text()}"
+                    )
                     ssa_controller.reset()
                     info = infos[i]
                     metric = {}
