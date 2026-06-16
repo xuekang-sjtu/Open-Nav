@@ -19,6 +19,18 @@ from habitat_baselines.common.baseline_registry import baseline_registry
 from resume_utils import collect_completed_episode_ids, filter_remaining_episode_ids
 from episode_filter import filter_episode_ids, parse_episode_ids
 
+
+R2R_V13_DATA_PATH = "../datasets/datasets/R2R_VLNCE_v1-3_preprocessed/{split}/{split}.json.gz"
+R2R_V13_GT_PATH = "../datasets/datasets/R2R_VLNCE_v1-3_preprocessed/{split}/{split}_gt.json.gz"
+
+
+def use_r2r_v13_dataset_for_cross_floor_all(config) -> None:
+    """Switch OpenNav100-style baselines to the full R2R v1-3 split for r2r-all."""
+    config.TASK_CONFIG.DATASET.DATA_PATH = R2R_V13_DATA_PATH
+    config.TASK_CONFIG.TASK.NDTW.GT_PATH = R2R_V13_GT_PATH
+    config.TASK_CONFIG.TASK.SDTW.GT_PATH = R2R_V13_GT_PATH
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -57,7 +69,7 @@ def main():
         "--cross-floor-filter",
         type=str,
         default=None,
-        choices=["r2r-100", "r2r-all", "rxr-100", "rxr-all"],
+        choices=["r2r-100", "r2r-100-0.5", "r2r-all", "rxr-100", "rxr-all"],
         help="Only run cross-floor episodes",
     )
     parser.add_argument(
@@ -121,6 +133,9 @@ def run_exp(exp_name: str, exp_config: str,
     config.SSA_DETECTOR_MODEL_SOURCE = str(ssa_detector_model_source)
 
     if cross_floor_filter is not None:
+        if cross_floor_filter == "r2r-all":
+            use_r2r_v13_dataset_for_cross_floor_all(config)
+            print(f"Using R2R v1-3 dataset for cross-floor filter [{cross_floor_filter}]")
         from cross_floor_filter import get_cross_floor_episode_ids
         allowed = get_cross_floor_episode_ids(cross_floor_filter)
         config.TASK_CONFIG.DATASET.EPISODES_ALLOWED = allowed

@@ -45,6 +45,7 @@ class llmClient:
             model_type (str): Either "gpt" or "opensource"
             api_key (str): API key for OpenAI (if using GPT)
         '''
+        api_key = self._normalize_api_key(api_key)
         # Configure based on model type
         if model_type == "gpt-4o-2024-08-06":
             self.model = model_type
@@ -71,6 +72,11 @@ class llmClient:
             )
         
         print(f"Initialized LLM client with model: {self.model}")
+
+    @staticmethod
+    def _normalize_api_key(api_key):
+        api_key = str(api_key or "").strip()
+        return api_key or "none"
 
     def set_model(self, model):
         self.model = model
@@ -135,9 +141,11 @@ class spatialClient:
                     self.spatialbot_path,
                     quantization_config=bnb_config,
                     low_cpu_mem_usage=True,
-                    trust_remote_code=True)
+                    trust_remote_code=True,
+                    local_files_only=True)
             finally:
                 PreTrainedModel.to = original_to
+            self._use_local_spatialbot_vision_tower()
             model_device = getattr(self.spatialbot_model, "device", None)
             if model_device is not None:
                 self.spatialbot_device = str(model_device)
@@ -154,7 +162,8 @@ class spatialClient:
         try:
             self.spatialbot_tokenizer = AutoTokenizer.from_pretrained(
                 self.spatialbot_path,
-                trust_remote_code=True)
+                trust_remote_code=True,
+                local_files_only=True)
 
             self.ram_transform = get_transform(image_size=224)
             self.ram_model = ram(pretrained=self.ram_path, image_size=224, vit='swin_l').eval().to(self.device)
@@ -162,6 +171,16 @@ class spatialClient:
             raise RuntimeError(
                 "Open-Nav requires local SpatialBot3B and RAM dependencies for faithful visual perception."
             ) from e
+
+    def _use_local_spatialbot_vision_tower(self):
+        local_siglip = os.path.join(self.spatialbot_path, "siglip-so400m-patch14-384")
+        if not os.path.isfile(os.path.join(local_siglip, "model.safetensors")):
+            raise RuntimeError(f"Missing local SigLIP weights: {local_siglip}")
+        if hasattr(self.spatialbot_model.config, "mm_vision_tower"):
+            self.spatialbot_model.config.mm_vision_tower = local_siglip
+        vision_tower = self.spatialbot_model.get_vision_tower()
+        if vision_tower is not None and hasattr(vision_tower, "vision_tower_name"):
+            vision_tower.vision_tower_name = local_siglip
             
     def ram_img_tagging(self, image):
         ram_img = self.ram_transform(image).unsqueeze(0).to(self.device)
