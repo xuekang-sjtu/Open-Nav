@@ -17,6 +17,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from shared.ssa.planner import SimulatorAStarPlanner
+from shared.ssa.rollout import execute_waypoint_rollout
 
 
 @baseline_registry.register_env(name="VLNCEDaggerEnv")
@@ -136,14 +137,15 @@ class VLNCEDaggerEnv(habitat.RLEnv):
     def ssa_build_plan(self, pose: Dict[str, Any]):
         start_pose = self._ssa_planner.current_pose(self._env)
         plan = self._ssa_planner.build_plan(self._env, pose)
-        actions = [int(action) for action in plan.actions]
         return {
-            "actions": actions,
+            "actions": [int(action) for action in plan.actions],
+            "rollout_steps": list(plan.rollout_steps),
             "target_position": np.asarray(plan.target_position, dtype=np.float32).tolist(),
             "target_yaw_deg": float(plan.target_yaw_deg),
             "error": str(plan.error or ""),
-            "planned_action_sequence": actions,
-            "planned_forward_actions": sum(1 for action in actions if int(action) == 1),
+            "planned_action_sequence": ["SSA"] * len(plan.rollout_steps),
+            "planned_forward_actions": sum(1 for action in plan.actions if int(action) == 1),
+            "planned_rollout_steps": int(len(plan.rollout_steps)),
             "start_pose": start_pose,
         }
 
@@ -155,56 +157,7 @@ class VLNCEDaggerEnv(habitat.RLEnv):
         )
 
     def ssa_execute_plan(self, plan_result: Dict[str, Any]):
-        target_position = np.asarray(plan_result.get("target_position", []), dtype=np.float32)
-        target_yaw_deg = float(plan_result.get("target_yaw_deg", 0.0) or 0.0)
-        actions = [int(action) for action in plan_result.get("actions", []) or []]
-        observations = self._env.sim.get_observations_at(
-            self._env.sim.get_agent_state().position,
-            self._env.sim.get_agent_state().rotation,
-        )
-        info = self.get_info(observations)
-        success = False
-        reason = str(plan_result.get("error", "") or "plan_exhausted")
-        start_pose = plan_result.get("start_pose") or self._ssa_planner.current_pose(self._env)
-        planned_action_sequence = [int(action) for action in actions]
-
-        def finish(done, reason, success, actions_executed):
-            result = {
-                "observations": observations,
-                "done": done,
-                "info": info,
-                "success": bool(success),
-                "reason": str(reason),
-                "actions_executed": int(actions_executed),
-                "planned_action_sequence": planned_action_sequence,
-                "start_pose": start_pose,
-            }
-            result.update(self._ssa_planner.pose_error(self._env, target_position, target_yaw_deg))
-            return result
-
-        for idx, action in enumerate(actions):
-            prev_position = np.asarray(self._env.sim.get_agent_state().position, dtype=np.float32)
-            observations = self._env.step(action)
-            positions = observations.pop("positions", [])
-            collisions = observations.pop("collisions", [])
-            if positions or collisions:
-                self.change_current_path(positions, collisions)
-            info = self.get_info(observations)
-            done = self.get_done(observations)
-            if done:
-                reason = "episode_done"
-                return finish(done, reason, False, idx + 1)
-            if action == 1:
-                curr_position = np.asarray(self._env.sim.get_agent_state().position, dtype=np.float32)
-                if float(np.linalg.norm(curr_position - prev_position)) < 0.05:
-                    reason = "forward_progress_failed"
-                    return finish(done, reason, False, idx + 1)
-            if self._ssa_planner.reached_target(self._env, target_position, target_yaw_deg):
-                success = True
-                reason = "reached_target"
-                return finish(done, reason, success, idx + 1)
-        done = self.get_done(observations)
-        return finish(done, reason, success, len(actions))
+        return execute_waypoint_rollout(self, self._ssa_planner, plan_result)
         
 
 @baseline_registry.register_env(name="VLNCEInferenceEnv")
