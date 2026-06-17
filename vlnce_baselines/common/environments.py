@@ -134,12 +134,17 @@ class VLNCEDaggerEnv(habitat.RLEnv):
         self._env.current_episode.info['collisions'] += collisions
 
     def ssa_build_plan(self, pose: Dict[str, Any]):
+        start_pose = self._ssa_planner.current_pose(self._env)
         plan = self._ssa_planner.build_plan(self._env, pose)
+        actions = [int(action) for action in plan.actions]
         return {
-            "actions": [int(action) for action in plan.actions],
+            "actions": actions,
             "target_position": np.asarray(plan.target_position, dtype=np.float32).tolist(),
             "target_yaw_deg": float(plan.target_yaw_deg),
             "error": str(plan.error or ""),
+            "planned_action_sequence": actions,
+            "planned_forward_actions": sum(1 for action in actions if int(action) == 1),
+            "start_pose": start_pose,
         }
 
     def ssa_reached_target(self, target_position: List[float], target_yaw_deg: float):
@@ -160,6 +165,23 @@ class VLNCEDaggerEnv(habitat.RLEnv):
         info = self.get_info(observations)
         success = False
         reason = str(plan_result.get("error", "") or "plan_exhausted")
+        start_pose = plan_result.get("start_pose") or self._ssa_planner.current_pose(self._env)
+        planned_action_sequence = [int(action) for action in actions]
+
+        def finish(done, reason, success, actions_executed):
+            result = {
+                "observations": observations,
+                "done": done,
+                "info": info,
+                "success": bool(success),
+                "reason": str(reason),
+                "actions_executed": int(actions_executed),
+                "planned_action_sequence": planned_action_sequence,
+                "start_pose": start_pose,
+            }
+            result.update(self._ssa_planner.pose_error(self._env, target_position, target_yaw_deg))
+            return result
+
         for idx, action in enumerate(actions):
             prev_position = np.asarray(self._env.sim.get_agent_state().position, dtype=np.float32)
             observations = self._env.step(action)
@@ -171,18 +193,18 @@ class VLNCEDaggerEnv(habitat.RLEnv):
             done = self.get_done(observations)
             if done:
                 reason = "episode_done"
-                return {"observations": observations, "done": done, "info": info, "success": False, "reason": reason, "actions_executed": idx + 1}
+                return finish(done, reason, False, idx + 1)
             if action == 1:
                 curr_position = np.asarray(self._env.sim.get_agent_state().position, dtype=np.float32)
                 if float(np.linalg.norm(curr_position - prev_position)) < 0.05:
                     reason = "forward_progress_failed"
-                    return {"observations": observations, "done": done, "info": info, "success": False, "reason": reason, "actions_executed": idx + 1}
+                    return finish(done, reason, False, idx + 1)
             if self._ssa_planner.reached_target(self._env, target_position, target_yaw_deg):
                 success = True
                 reason = "reached_target"
-                return {"observations": observations, "done": done, "info": info, "success": success, "reason": reason, "actions_executed": idx + 1}
+                return finish(done, reason, success, idx + 1)
         done = self.get_done(observations)
-        return {"observations": observations, "done": done, "info": info, "success": success, "reason": reason, "actions_executed": len(actions)}
+        return finish(done, reason, success, len(actions))
         
 
 @baseline_registry.register_env(name="VLNCEInferenceEnv")
