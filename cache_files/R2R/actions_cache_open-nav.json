@@ -1,0 +1,1046 @@
+{
+  "Head across the room towards the front door then turn left. Go up the stairs and turn right. Enter the bedroom then wait. ": {
+    "actions": "Head across the room towards the front door\nTurn left\nGo up the stairs\nTurn right\nEnter the bedroom\nWait",
+    "landmarks": "front door, stairs, bedroom"
+  },
+  "Walk up stairs. At top of stairs turn right. Walk straight to bedroom. Turn left and walk to bed lamp.Turn left and enter closet. Stop at rug. ": {
+    "actions": "- Walk up stairs\n- Turn right at top of stairs\n- Walk straight to bedroom\n- Turn left\n- Walk to bed lamp\n- Turn left\n- Enter closet\n- Stop at rug",
+    "landmarks": "top of stairs, bedroom, bed lamp, closet, rug"
+  },
+  "Exit the bathroom, go up the stairs, turn right, walk down the hall, enter the room at the end of the hall, wait at the sculpture. ": {
+    "actions": "Exit the bathroom\nGo up the stairs\nTurn right\nWalk down the hall\nEnter the room at the end of the hall\nWait at the sculpture",
+    "landmarks": "bathroom, stairs, hall, room at the end of the hall, sculpture"
+  },
+  "Walk down the flight of stairs to the lower level. Walk into the room ahead with the tile mosaic on the floor. Walk around the corner through the open arched door to the right with rug on the ground. ": {
+    "actions": "Walk down the flight of stairs to the lower level.\nWalk into the room ahead with the tile mosaic on the floor.\nWalk around the corner through the open arched door to the right with rug on the ground.",
+    "landmarks": "the flight of stairs, the lower level, the room ahead with the tile mosaic on the floor, the corner, the open arched door to the right with rug on the ground"
+  },
+  "Walk through the dining room and kitchen air to the short flight of stairs. Walk up the short flight of stairs. Wait by the door at the top of the stairs. ": {
+    "actions": "Walk through the dining room and kitchen air to the short flight of stairs.\nWalk up the short flight of stairs.\nWait by the door at the top of the stairs.",
+    "landmarks": "dining room, kitchen, short flight of stairs, door at the top of the stairs"
+  },
+  "Go up the stairs and take a left. Walk towards the couch and chairs in the sitting area. Walk through the sitting area and stop in front of the first door to the balcony on your left. ": {
+    "actions": "Go up the stairs\nTake a left\nWalk towards the couch and chairs in the sitting area\nWalk through the sitting area\nStop in front of the first door to the balcony on your left",
+    "landmarks": "the stairs, the couch and chairs, the sitting area, the first door to the balcony"
+  },
+  "Walk into the hall ahead. Walk down the flight of stairs with an iron railing. Continue to the bottom of the stairs and stop near the bench at the bottom next to a closed door. ": {
+    "actions": "\n\nAction 1: Walk into the hall ahead.\nAction 2: Walk down the flight of stairs with an iron railing.\nAction 3: Continue to the bottom of the stairs.\nAction 4: Stop near the bench at the bottom next to a closed door.",
+    "landmarks": "\n\nhall, flight of stairs with an iron railing, bench, closed door"
+  },
+  "Go up to the top of the staircase and stand at the top. ": {
+    "actions": "\n\nAction 1: Ascend the staircase\nAction 2: Arrive at the top of the staircase\nAction 3: Stand at the top",
+    "landmarks": "\n\nstaircase, top of the staircase"
+  },
+  "Go to the top of the stairs and turn left.  Go past the fake tree to the base of the stairs and go up the stairs.  Stop at the top of the stairs. ": {
+    "actions": "\n\nAction 1: Go to the top of the stairs\nAction 2: Turn left\nAction 3: Go past the fake tree to the base of the stairs\nAction 4: Go up the stairs\nAction 5: Stop at the top of the stairs",
+    "landmarks": "\n\ntop of the stairs, fake tree, base of the stairs, stairs"
+  },
+  "You need to walk up the stairs and make a left when you get to the top. Next, make a right and walk towards the stairs. When you get to the stairs wait beside them and in front of the rug in front of the front door. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Make a left at the top\nAction 3: Make a right\nAction 4: Walk towards the stairs\nAction 5: Wait beside the stairs in front of the rug in front of the front door",
+    "landmarks": "\n\nstairs, rug, front door"
+  },
+  "Go up the stairs. Stop at the top of the stairs. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Stop at the top of the stairs",
+    "landmarks": "\n\nLandmark 1: the stairs\nLandmark 2: the top of the stairs"
+  },
+  "WALK UP THE STAIRS, TURN TO THE LEFT AND ENTER INTO THE SECOND OPEN DOOR ON THE LEFT, WALK TOWARDS THE FOOT OF THE BED, TURN RIGHT AND ENTER THE OPEN DOOR TO THE BATHROOM. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn left\nAction 3: Enter the second open door on the left\nAction 4: Walk towards the foot of the bed\nAction 5: Turn right\nAction 6: Enter the open door to the bathroom",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: second open door on the left\nLandmark 3: foot of the bed\nLandmark 4: open door to the bathroom"
+  },
+  "Walk up the stairs. Turn right on the landing. Walk through the door. Walk towards the head of the bed. Turn left. Stop at the entrance to the dressing room. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn right on the landing\nAction 3: Walk through the door\nAction 4: Walk towards the head of the bed\nAction 5: Turn left\nAction 6: Stop at the entrance to the dressing room",
+    "landmarks": "\n\nstairs\nlanding\ndoor\nhead of the bed\nentrance to the dressing room"
+  },
+  "Walk through the entryway and turn left. Walk down the stairs and stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk through the entryway\nAction 2: Turn left\nAction 3: Walk down the stairs\nAction 4: Stop at the bottom of the stairs",
+    "landmarks": "\n\nentryway, stairs, bottom of the stairs"
+  },
+  "Exit dining room, walk towards the front door, go up stair case, turn right, stop in the doorway to bedroom. ": {
+    "actions": "\n\nAction 1: Exit dining room\nAction 2: Walk towards front door\nAction 3: Go up staircase\nAction 4: Turn right\nAction 5: Stop in bedroom doorway",
+    "landmarks": "\n\n- dining room\n- front door\n- staircase\n- bedroom doorway"
+  },
+  "Walk through the opening next to the built-in shelves. Go down the stairs and stop at the bottom next to the double wall switches. ": {
+    "actions": "\n\nAction 1: Walk through the opening next to the built-in shelves.\nAction 2: Go down the stairs.\nAction 3: Stop at the bottom next to the double wall switches.",
+    "landmarks": "\n\nLandmark 1: built-in shelves\nLandmark 2: stairs\nLandmark 3: double wall switches"
+  },
+  "Walk up the stairs, turn left, make another left, stop near the bedroom doorway. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn left\nAction 3: Make another left\nAction 4: Stop near the bedroom doorway",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: bedroom doorway"
+  },
+  "Walk up the stairs in front of you all the way to the top. At the top turn left and then left again to walk along the railing and stop when you enter the room on the end. ": {
+    "actions": "\n\nAction 1: Walk up the stairs to the top\nAction 2: Turn left\nAction 3: Turn left again\nAction 4: Walk along the railing\nAction 5: Stop upon entering the room at the end",
+    "landmarks": "\n\nthe stairs\nthe top\nthe railing\nthe room at the end"
+  },
+  "Walk up the stairs. Turn left and wait in the entry way of the bedroom. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn left\nAction 3: Wait in the entry way of the bedroom",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: entry way of the bedroom"
+  },
+  "Walk up the stairs, then make a slight left, walking toward another set of stairs. Stop by the base of the stairs. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Make a slight left\nAction 3: Walk toward another set of stairs\nAction 4: Stop by the base of the stairs",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: another set of stairs\nLandmark 3: base of the stairs"
+  },
+  "Go up the stairs and take a right. Wait in the doorway. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn right\nAction 3: Wait in the doorway",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: doorway"
+  },
+  "Go to the vases on the right side of the staircase. Go down to the bottom of the nearest staircase. ": {
+    "actions": "\n\nAction 1: Go to the vases on the right side of the staircase\nAction 2: Go down to the bottom of the nearest staircase",
+    "landmarks": "\n\nLandmark 1: vases on the right side of the staircase\nLandmark 2: nearest staircase"
+  },
+  "Go up stairs and turn left to stairs. Stop between stairs and large double doors. ": {
+    "actions": "\n\nAction 1: Go up stairs\nAction 2: Turn left to stairs\nAction 3: Stop between stairs and large double doors",
+    "landmarks": "\n\nLandmark: stairs\nLandmark: large double doors"
+  },
+  "Walk up all the stairs. Make a right around the banister. Make a right into the room with the bed. Make a left into the open storage area that houses the white rug. ": {
+    "actions": "\n\nAction 1: Walk up all the stairs\nAction 2: Make a right around the banister\nAction 3: Make a right into the room with the bed\nAction 4: Make a left into the open storage area that houses the white rug",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: banister\nLandmark 3: room with the bed\nLandmark 4: open storage area that houses the white rug"
+  },
+  "Go up the stairs. Turn right. Stop just inside the doorway of the bedroom with the round mirror on the wall to the right, opposite the bed. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn right\nAction 3: Stop just inside the doorway of the bedroom with the round mirror on the wall to the right, opposite the bed",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: doorway of the bedroom\nLandmark 3: round mirror\nLandmark 4: bed"
+  },
+  "Make your way up the steps, take a left turn and walk into the main room, stopping at the door. ": {
+    "actions": "\n\nAction 1: Make your way up the steps\nAction 2: Take a left turn\nAction 3: Walk into the main room\nAction 4: Stop at the door",
+    "landmarks": "\n\nsteps\nmain room\ndoor"
+  },
+  "Walk up the steps and turn left. Walk toward the front door and turn right at the steps. Walk up the stairs and stop at the top of the steps. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Turn left\nAction 3: Walk toward the front door\nAction 4: Turn right at the steps\nAction 5: Walk up the stairs\nAction 6: Stop at the top of the steps",
+    "landmarks": "\n\nLandmark 1: steps\nLandmark 2: front door\nLandmark 3: steps\nLandmark 4: stairs\nLandmark 5: top of the steps"
+  },
+  "walk up stairs. Turn left and walk to the double doors by the living room. ": {
+    "actions": "\n\nAction 1: Walk up stairs\nAction 2: Turn left\nAction 3: Walk to the double doors by the living room",
+    "landmarks": "\n\nstairs, double doors, living room"
+  },
+  "Go up the stairs. Take a left at the top of the stairs. Go into the bedroom on the left. Stop in the doorway. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left at the top of the stairs\nAction 3: Enter the bedroom on the left\nAction 4: Stop in the doorway",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: top of the stairs\nLandmark 3: bedroom on the left\nLandmark 4: doorway"
+  },
+  "Walk through the doorway towards the railings and go down the stairs on the left.  Stop when you reach the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk through the doorway towards the railings\nAction 2: Go down the stairs on the left\nAction 3: Stop at the bottom of the stairs",
+    "landmarks": "\n\ndoorway, railings, stairs on the left, bottom of the stairs"
+  },
+  "Go up four stairs. Go to the sunset painting. Go to the marble table. Go to the oven. Go to the dining room table. ": {
+    "actions": "\n\nAction 1: Go up four stairs\nAction 2: Go to the sunset painting\nAction 3: Go to the marble table\nAction 4: Go to the oven\nAction 5: Go to the dining room table",
+    "landmarks": "\n\nfour stairs, sunset painting, marble table, oven, dining room table"
+  },
+  "Walk towards the stairs to the slight right and then make a hard right turn up the stairs and continue until you've reached the top. ": {
+    "actions": "\n\nAction 1: Walk towards the stairs to the slight right\nAction 2: Make a hard right turn up the stairs\nAction 3: Continue walking until reaching the top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: top"
+  },
+  "Turn left and walk toward the stairs on the right. Go up the stairs and stop at the top. ": {
+    "actions": "\n\nAction 1: Turn left\nAction 2: Walk toward the stairs on the right\nAction 3: Go up the stairs\nAction 4: Stop at the top",
+    "landmarks": "\n\nstairs"
+  },
+  "Go upstairs and enter the bedroom on the right. ": {
+    "actions": "\n\nAction 1: Go upstairs\nAction 2: Locate the bedroom on the right\nAction 3: Enter the bedroom",
+    "landmarks": "\n\nLandmark 1: upstairs\nLandmark 2: bedroom on the right"
+  },
+  "In the entry way go up the stairs and in the hallway at the top take a left and go past the dining room into the entry way with the stairs on the right side and stop right between the bottom of the first stair and the console table on the left. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Take a left in the hallway\nAction 3: Go past the dining room\nAction 4: Enter the entryway\nAction 5: Stop between the bottom of the first stair and the console table on the left",
+    "landmarks": "\n\nstairs, hallway, dining room, entryway, bottom of the first stair, console table on the left"
+  },
+  "Go up the stairs and at the top turn to the left and walk. Stop in the doorway of the bedroom. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left at the top\nAction 3: Walk forward\nAction 4: Stop in the bedroom doorway",
+    "landmarks": "\n\nstairs, the top, bedroom doorway"
+  },
+  "Go up stairs, turn right and go into kitchen. Stop at circular counter with chairs. ": {
+    "actions": "\n\nAction 1: Go up stairs\nAction 2: Turn right\nAction 3: Go into kitchen\nAction 4: Stop at circular counter with chairs",
+    "landmarks": "\n\nstairs\nkitchen\ncircular counter with chairs"
+  },
+  "Go down hallway towards the staircase. Go up the staircase and wait at the top. ": {
+    "actions": "\n\nAction 1: Go down the hallway towards the staircase\nAction 2: Go up the staircase\nAction 3: Wait at the top of the staircase",
+    "landmarks": "\n\nhallway, staircase, top of the staircase"
+  },
+  "GO up the stairs, turn right. Stop in the bedroom. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn right\nAction 3: Stop in the bedroom",
+    "landmarks": "\n\nstairs, bedroom"
+  },
+  "Walk upstairs into the kitchen. Wait in the doorway to the dining area. ": {
+    "actions": "\n\nAction 1: Walk upstairs\nAction 2: Enter the kitchen\nAction 3: Wait in the doorway to the dining area",
+    "landmarks": "\n\nLandmark 1: upstairs\nLandmark 2: kitchen\nLandmark 3: doorway to the dining area"
+  },
+  "Go upstairs and wait in the doorway on the left. ": {
+    "actions": "\n\nAction 1: Go upstairs\nAction 2: Wait in the doorway on the left",
+    "landmarks": "\n\nupstairs, doorway on the left"
+  },
+  "Go up the stairs and stop at the top in front of a mirror. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Stop at the top\nAction 3: Position in front of a mirror",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: mirror"
+  },
+  "Walk up stairs, turn left and stop in bedroom. ": {
+    "actions": "\n\nAction 1: Walk up stairs\nAction 2: Turn left\nAction 3: Stop in bedroom",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: bedroom"
+  },
+  "Go up the staircase to the next floor and take a left before the woven basket, to the double doors. Wait at the entrance to the office, by the large table. ": {
+    "actions": "\n\nAction 1: Go up the staircase to the next floor\nAction 2: Take a left before the woven basket\nAction 3: Proceed to the double doors\nAction 4: Wait at the entrance to the office by the large table",
+    "landmarks": "\n\nLandmark 1: staircase\nLandmark 2: woven basket\nLandmark 3: double doors\nLandmark 4: entrance to the office\nLandmark 5: large table"
+  },
+  "Climb up the stairs and turn right at the top. Enter the room, then stop. ": {
+    "actions": "\n\nAction 1: Climb up the stairs\nAction 2: Turn right at the top\nAction 3: Enter the room\nAction 4: Stop",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: room"
+  },
+  "Go up the stairs, and then turn around and go through the door past the stairs. Walk up to the bed, then turn to the right and walk into the doorway. Stop there. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn around\nAction 3: Go through the door past the stairs\nAction 4: Walk up to the bed\nAction 5: Turn to the right\nAction 6: Walk into the doorway\nAction 7: Stop",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: door\nLandmark 3: bed\nLandmark 4: doorway"
+  },
+  "Walk up the stairs and turn left at the plant. Walk forward wait at the bedroom with rug that has squares on it. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn left at the plant\nAction 3: Walk forward\nAction 4: Wait at the bedroom with rug that has squares on it",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: plant\nLandmark 3: bedroom with rug that has squares on it"
+  },
+  "Walk up the flight of stairs to the top. Turn and follow the railing into the bedroom area. Walk towards the closet. ": {
+    "actions": "\n\nAction 1: Walk up the flight of stairs to the top\nAction 2: Turn\nAction 3: Follow the railing into the bedroom area\nAction 4: Walk towards the closet",
+    "landmarks": "\n\nLandmark 1: flight of stairs\nLandmark 2: railing\nLandmark 3: bedroom area\nLandmark 4: closet"
+  },
+  "Continue forward until you reach the top of the steps and change your direction to the left. Travel forward until you reach the base of the next staircase on your right. Ascend the stairs until you reach the top step. Halt here. ": {
+    "actions": "\n\nAction 1: Continue forward until reaching the top of the steps\nAction 2: Change direction to the left\nAction 3: Travel forward until reaching the base of the staircase on the right\nAction 4: Ascend the stairs until reaching the top step\nAction 5: Halt",
+    "landmarks": "\n\nLandmark 1: top of the steps\nLandmark 2: base of the staircase on the right\nLandmark 3: top step"
+  },
+  "Go up the stairs and take a right. Enter the doorway into the kitchen and take a left. Walk through the kitchen and take a left into the dining room. Stop in the doorway to the dining room. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Take a right\nAction 3: Enter the doorway into the kitchen\nAction 4: Take a left\nAction 5: Walk through the kitchen\nAction 6: Take a left into the dining room\nAction 7: Stop in the doorway to the dining room",
+    "landmarks": "\n\nstairs\ndoorway into the kitchen\nkitchen\ndining room\ndoorway to the dining room"
+  },
+  "Enter the room and turn around to see the stairs. Go up the stairs, then take a right, and stop in the bedroom doorway. ": {
+    "actions": "\n\nAction 1: Enter the room\nAction 2: Turn around\nAction 3: Go up the stairs\nAction 4: Take a right\nAction 5: Stop in the bedroom doorway",
+    "landmarks": "\n\nLandmark 1: the room\nLandmark 2: the stairs\nLandmark 3: the bedroom doorway"
+  },
+  "walk away from fireplace, turn left and walk up the stairs, curve right, walk up more, curve right and walk up all of the stairs, turn left at the top of the stairs, stop in the doorway to the bedroom straight ahead. ": {
+    "actions": "\n\nAction 1: walk away from fireplace\nAction 2: turn left\nAction 3: walk up the stairs\nAction 4: curve right\nAction 5: walk up more\nAction 6: curve right\nAction 7: walk up all of the stairs\nAction 8: turn left at the top of the stairs\nAction 9: stop in the doorway to the bedroom straight ahead",
+    "landmarks": "\n\nfireplace, stairs, top of the stairs, doorway to the bedroom, bedroom"
+  },
+  "Go up the stairs and turn left. Wait at the doorway to the bedroom straight ahead. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left\nAction 3: Wait at the doorway to the bedroom straight ahead",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: doorway to the bedroom"
+  },
+  "Turn left and go down the steps on the right, wait at the end. ": {
+    "actions": "\n\nAction 1: Turn left\nAction 2: Go down the steps on the right\nAction 3: Wait at the end",
+    "landmarks": "\n\nLandmark 1: steps\nLandmark 2: the end"
+  },
+  "Go up the stairs and take a left. Enter the office through the french doors. Stop in the doorway. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Take a left\nAction 3: Enter the office through the french doors\nAction 4: Stop in the doorway",
+    "landmarks": "\n\nLandmark: stairs\nLandmark: office\nLandmark: french doors\nLandmark: doorway"
+  },
+  "Walk up the stairs and make a sharp turn left. Walk up the stairs and turn left. Stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Make a sharp turn left\nAction 3: Walk up the stairs\nAction 4: Turn left\nAction 5: Stop at the bottom of the stairs",
+    "landmarks": "\n\nstairs, bottom of the stairs"
+  },
+  "Walk down the stairs and take a right to go down the next flight of stairs. Stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Turn right\nAction 3: Go down the next flight of stairs\nAction 4: Stop at the bottom of the stairs",
+    "landmarks": "\n\nstairs\nnext flight of stairs\nbottom of the stairs"
+  },
+  "Keep walking down the stairs past several doorways and wait at the entrance to a room with a glass painting. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Pass several doorways\nAction 3: Wait at the entrance to a room with a glass painting",
+    "landmarks": "\n\nstairs\ndoorways\nentrance to a room with a glass painting"
+  },
+  "Exit the door, and walk all the way down to the bottom of the staircase, and stop at the blue patterned carpet on the floor. ": {
+    "actions": "\n\nAction 1: Exit the door\nAction 2: Walk all the way down to the bottom of the staircase\nAction 3: Stop at the blue patterned carpet on the floor",
+    "landmarks": "\n\nLandmark 1: the door\nLandmark 2: the bottom of the staircase\nLandmark 3: the blue patterned carpet on the floor"
+  },
+  "Walk up the remainder of the way up that flight of stairs, then continue up the second flight of stairs until you reach a landing with four rooms.  Turn right and walk down that hallway into the room at the end of the hall.  Stop in the room with boxes in it, next to the door leading to another room and near the fireplace. ": {
+    "actions": "\n\nAction 1: Walk up the remainder of the first flight of stairs\nAction 2: Continue up the second flight of stairs until reaching the landing with four rooms\nAction 3: Turn right\nAction 4: Walk down the hallway into the room at the end\nAction 5: Stop in the room with boxes, next to the door leading to another room and near the fireplace",
+    "landmarks": "\n\nfirst flight of stairs\nsecond flight of stairs\nlanding with four rooms\nhallway\nroom at the end\nroom with boxes\ndoor leading to another room\nfireplace"
+  },
+  "Turn around and walk down the stairs. Wait in the entry way of the living area on the right. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Walk down the stairs\nAction 3: Wait in the entry way of the living area on the right",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: entry way of the living area"
+  },
+  "Walk down the staircase until you reach the bottom floor. Wait near the first open door. ": {
+    "actions": "\n\nAction 1: Walk down the staircase until reaching the bottom floor\nAction 2: Wait near the first open door",
+    "landmarks": "\n\nLandmark 1: staircase\nLandmark 2: bottom floor\nLandmark 3: first open door"
+  },
+  "Turn around and go up the stairs. On the second landing go into the door on the left in front of you and stop on the rug by the book case. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go up the stairs\nAction 3: Enter the door on the left at the second landing\nAction 4: Stop on the rug by the bookcase",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: door on the left\nLandmark 3: second landing\nLandmark 4: rug\nLandmark 5: bookcase"
+  },
+  "Continue down the stairs until level ground. Go down another level, then another, then stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Continue down the stairs until level ground\nAction 2: Go down another level\nAction 3: Go down another level\nAction 4: Stop at the bottom of the stairs",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: level ground\nLandmark 3: bottom of the stairs"
+  },
+  "Exit the room, turn right and go down the stairs, turn right and right again to the keep going down stairs, when you have reached the bottom stop. ": {
+    "actions": "\n\nAction 1: Exit the room\nAction 2: Turn right\nAction 3: Go down the stairs\nAction 4: Turn right\nAction 5: Turn right again\nAction 6: Continue going down the stairs\nAction 7: Stop at the bottom",
+    "landmarks": "\n\nLandmark: the room, Landmark: the stairs, Landmark: the bottom"
+  },
+  "Exit the shower and to down the stairs. Go straight and turn left in the last door on the left. Wait by the table with the two chairs. ": {
+    "actions": "\n\nAction 1: Exit the shower\nAction 2: Go down the stairs\nAction 3: Go straight\nAction 4: Turn left into the last door on the left\nAction 5: Wait by the table with the two chairs",
+    "landmarks": "\n\nshower\nstairs\nlast door on the left\ntable with the two chairs"
+  },
+  "Go down the stairs to the next floor. Go down one step on the next set of stairs and stop. ": {
+    "actions": "\n\nAction 1: Go down the stairs to the next floor\nAction 2: Go down one step on the next set of stairs\nAction 3: Stop",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: next floor\nLandmark 3: next set of stairs"
+  },
+  "Walk downstairs and wait inside the second door on the left. ": {
+    "actions": "\n\nAction 1: Walk downstairs\nAction 2: Wait inside the second door on the left",
+    "landmarks": "\n\ndownstairs\nsecond door on the left"
+  },
+  "Walk to the stairs. Walk down the stairs and make a sharp turn right. Walk down the stairs and stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk to the stairs\nAction 2: Walk down the stairs\nAction 3: Make a sharp right turn\nAction 4: Walk down the stairs\nAction 5: Stop at the bottom of the stairs",
+    "landmarks": "\n\nthe stairs, the bottom of the stairs"
+  },
+  "Walk down the stairs, at the landing enter the second doorway on the left. Wait near the bookshelf. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Enter the second doorway on the left at the landing\nAction 3: Wait near the bookshelf",
+    "landmarks": "\n\nstairs, landing, second doorway on the left, bookshelf"
+  },
+  "Walk up the stairs to the second landing, then turn left. Wait on the rug, near the doorway. ": {
+    "actions": "\n\nAction 1: Walk up the stairs to the second landing\nAction 2: Turn left\nAction 3: Wait on the rug, near the doorway",
+    "landmarks": "\n\nstairs, second landing, rug, doorway"
+  },
+  "Go to the bottom of the staircase. Go down to the bottom of the staircase. Turn immediately right and go to the bottom of the staircase and stop. ": {
+    "actions": "\n\nAction 1: Go to the bottom of the staircase\nAction 2: Go down to the bottom of the staircase\nAction 3: Turn immediately right\nAction 4: Go to the bottom of the staircase\nAction 5: Stop",
+    "landmarks": "\n\nbottom of the staircase"
+  },
+  "Walk into the hallway and toward the stairs. Walk down the stairs and make a sharp turn right. Walk down the stairs and stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk into the hallway\nAction 2: Walk toward the stairs\nAction 3: Walk down the stairs\nAction 4: Make a sharp right turn\nAction 5: Walk down the stairs\nAction 6: Stop at the bottom of the stairs",
+    "landmarks": "\n\nhallway, stairs, bottom of the stairs"
+  },
+  "Go down the stairs and turn left into the room then wait there. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn left into the room\nAction 3: Wait in the room",
+    "landmarks": "\n\nLandmark: stairs\nLandmark: room"
+  },
+  "Go down the stairs. Once down the stairs go forward down the hall, and take the first left into the dining room. Stop on the rug between the credenza, and the door frame. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Go forward down the hall\nAction 3: Take the first left into the dining room\nAction 4: Stop on the rug between the credenza and the door frame",
+    "landmarks": "\n\nstairs, hall, dining room, rug, credenza, door frame"
+  },
+  "Walk down the stairs. When you reach the landing, turn right and continue to walk down the stairs. Walk through the doorway on your left and stop. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Turn right at the landing\nAction 3: Continue walking down the stairs\nAction 4: Walk through the doorway on the left\nAction 5: Stop",
+    "landmarks": "\n\nstairs, landing, doorway on the left"
+  },
+  "Turn around, start going up steps, stop before last flight of steps. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Ascend the steps\nAction 3: Stop before the last flight of steps",
+    "landmarks": "\n\nLandmark 1: the steps\nLandmark 2: the last flight of steps"
+  },
+  "Walk through smallest door. Go down the steps. Take a right and go halfway down the next set of stairs. Wait there. ": {
+    "actions": "\n\nAction 1: Walk through smallest door\nAction 2: Go down the steps\nAction 3: Take a right\nAction 4: Go halfway down the next set of stairs\nAction 5: Wait there",
+    "landmarks": "\n\nLandmark 1: smallest door\nLandmark 2: steps\nLandmark 3: next set of stairs"
+  },
+  "Turn around and go up the stairs. Turn left and go up more stairs. Wait at the top of those stairs. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go up the stairs\nAction 3: Turn left\nAction 4: Go up more stairs\nAction 5: Wait at the top of those stairs",
+    "landmarks": "\n\nstairs, more stairs, top of those stairs"
+  },
+  "Head to the doorway and into the hall.  Turn right and go down the stairs.  Stop midway on the second flight of stairs. ": {
+    "actions": "\n\nAction 1: Head to the doorway\nAction 2: Enter the hall\nAction 3: Turn right\nAction 4: Go down the stairs\nAction 5: Stop midway on the second flight of stairs",
+    "landmarks": "\n\ndoorway, hall, stairs, second flight of stairs"
+  },
+  "Go up the current set of stairs, and continue up the next set. Take a right and enter the room at the end of the hall. Stop in front of the door to the room on the left. ": {
+    "actions": "\n\nAction 1: Go up the current set of stairs\nAction 2: Continue up the next set of stairs\nAction 3: Take a right\nAction 4: Enter the room at the end of the hall\nAction 5: Stop in front of the door to the room on the left",
+    "landmarks": "\n\nLandmark 1: current set of stairs\nLandmark 2: next set of stairs\nLandmark 3: room at the end of the hall\nLandmark 4: door to the room on the left"
+  },
+  "Walk up the stairs. At the top of the stairs take a right and enter the room at the end of the hall. Stop in front of the large shell on the floor. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Take a right at the top of the stairs\nAction 3: Enter the room at the end of the hall\nAction 4: Stop in front of the large shell on the floor",
+    "landmarks": "\n\nstairs\ntop of the stairs\nroom at the end of the hall\nlarge shell on the floor"
+  },
+  "Walk up the steps and make a sharp turn left. Walk up the steps and into the room straight across. Stop just inside the room. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Make a sharp left turn\nAction 3: Walk up the steps\nAction 4: Enter the room straight across\nAction 5: Stop just inside the room",
+    "landmarks": "\n\nthe steps, the room straight across, the room"
+  },
+  "With the fireplace on your left side, move forward until you can exit the room through a door to your left. Exit through the door and climb the stairs to your immediate right. After reaching the first landing, take two more steps up the next staircase. ": {
+    "actions": "\n\nAction 1: Move forward with the fireplace on the left until reaching the exit door\nAction 2: Exit through the door on the left\nAction 3: Climb the stairs to the immediate right\nAction 4: Take two steps up the next staircase after reaching the first landing",
+    "landmarks": "\n\nfireplace\nexit door\nstairs\nfirst landing\nnext staircase"
+  },
+  "Go forward and make a left to the bottom of the stairs. Head up the steps and go left to head up the second set of steps. Wait near the stair landing. ": {
+    "actions": "\n\nAction 1: Go forward\nAction 2: Turn left to the bottom of the stairs\nAction 3: Head up the first set of steps\nAction 4: Turn left to the second set of steps\nAction 5: Head up the second set of steps\nAction 6: Wait near the stair landing",
+    "landmarks": "\n\nLandmark 1: bottom of the stairs\nLandmark 2: first set of steps\nLandmark 3: second set of steps\nLandmark 4: stair landing"
+  },
+  "Keeping the closed door to your rear, traverse the long carpet until you walk passed the stairway leading up. You will then catch a glimpse of some stairs leading down and towards the outside. Go on and head down all of these stairs. Once at the bottom of the stairs, hang a right. Twist to the right and traverse the next set of stairs.Traveling quickly forward until your reach your destination of the display case. Stop moving until you are told next where to go. ": {
+    "actions": "\n\nAction 1: Keep the closed door behind you\nAction 2: Traverse the long carpet past the upward stairway\nAction 3: Descend the stairs leading down and outside\nAction 4: Turn right at the bottom of the stairs\nAction 5: Turn right and traverse the next set of stairs\nAction 6: Move forward quickly to the display case\nAction 7: Stop and wait for further instructions",
+    "landmarks": "\n\nLandmark 1: closed door\nLandmark 2: long carpet\nLandmark 3: upward stairway\nLandmark 4: stairs leading down and outside\nLandmark 5: bottom of the stairs\nLandmark 6: next set of stairs\nLandmark 7: display case"
+  },
+  "Exit the room into the hallway, travel up the stairs on your right, take a left and continue up the stairs and wait near the top of the last step. ": {
+    "actions": "\n\nAction 1: Exit the room into the hallway\nAction 2: Travel up the stairs on the right\nAction 3: Take a left\nAction 4: Continue up the stairs\nAction 5: Wait near the top of the last step",
+    "landmarks": "\n\nLandmark: the room\nLandmark: the hallway\nLandmark: the stairs on the right\nLandmark: the stairs\nLandmark: the top of the last step"
+  },
+  "Go down the stairs to the next floor. On the next floor take another right and go down the first section of stairs and stop on the landing in front of the room with the radiator visible. ": {
+    "actions": "\n\nAction 1: Go down the stairs to the next floor\nAction 2: Take another right on the next floor\nAction 3: Go down the first section of stairs\nAction 4: Stop on the landing in front of the room with the visible radiator",
+    "landmarks": "\n\n- stairs\n- first section of stairs\n- landing\n- room with the visible radiator"
+  },
+  "Exit the room using the door on the right then turn right and go up the stair until you get four steps from the top then stop. ": {
+    "actions": "\n\nAction 1: Exit the room using the door on the right\nAction 2: Turn right\nAction 3: Go up the stair until four steps from the top\nAction 4: Stop",
+    "landmarks": "\n\nLandmark 1: door on the right\nLandmark 2: stair"
+  },
+  "Head down first flight of stairs and at landing turn right to go down next second flight of stairs. At landing of second flight of stairs veer to the right and turn right into first door way. Stop just inside of doorway. ": {
+    "actions": "\n\nAction 1: Head down first flight of stairs\nAction 2: Turn right at landing\nAction 3: Go down second flight of stairs\nAction 4: Veer right at landing of second flight of stairs\nAction 5: Turn right into first doorway\nAction 6: Stop just inside doorway",
+    "landmarks": "\n\nLandmark 1: first flight of stairs\nLandmark 2: landing\nLandmark 3: second flight of stairs\nLandmark 4: landing of second flight of stairs\nLandmark 5: first doorway\nLandmark 6: doorway"
+  },
+  "Go down the stairs, and make a right and then another right to go down some more stairs and go straight into the doorway to the left but not the leftmost doorway. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Turn right\nAction 4: Go down the stairs\nAction 5: Go straight into the second doorway from the left",
+    "landmarks": "\n\nstairs, second doorway from the left"
+  },
+  "With the wall where the fireplace is behind you, exit the room going forward. After passing the bathroom on your left, you'll reach a staircase on your left that goes upwards and downwards. Take one flight of stairs going down, then stop on the landing. ": {
+    "actions": "\n\nAction 1: Exit the room forward\nAction 2: Pass the bathroom on the left\nAction 3: Descend one flight of stairs\nAction 4: Stop on the landing",
+    "landmarks": "\n\nLandmark 1: bathroom\nLandmark 2: stairs\nLandmark 3: landing"
+  },
+  "Walk down the stairs and turn hard left at the landing. Wait on the rug, near the doorway. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Turn hard left at the landing\nAction 3: Wait on the rug near the doorway",
+    "landmarks": "\n\nstairs, landing, rug, doorway"
+  },
+  "Walk down stairs.  Walk down second set of stairs. stop at doorway. ": {
+    "actions": "\n\nAction 1: Walk down stairs\nAction 2: Walk down second set of stairs\nAction 3: Stop at doorway",
+    "landmarks": "\n\nstairs\nsecond set of stairs\ndoorway"
+  },
+  "Walk all the way to the bottom on both flight of stairs, Walk straigh the the hallway to your left, and stop right before the rug.,. ": {
+    "actions": "\n\nAction 1: Walk down both flights of stairs to the bottom\nAction 2: Turn left into the hallway and walk straight\nAction 3: Stop right before the rug",
+    "landmarks": "\n\nLandmark 1: both flights of stairs\nLandmark 2: hallway\nLandmark 3: rug"
+  },
+  "Going down the stairs take a right and go down the next set of stairs and at the bottom of the stairs take a left into the dining room stopping just inside the doorway. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Go down the next set of stairs\nAction 4: Turn left into the dining room\nAction 5: Stop just inside the doorway",
+    "landmarks": "\n\nstairs, next set of stairs, dining room, doorway"
+  },
+  "Exit through the set of double doors and head up one flight of the stairs.  Wait there. ": {
+    "actions": "\n\nAction 1: Exit through the set of double doors\nAction 2: Head up one flight of stairs\nAction 3: Wait at the top of the stairs",
+    "landmarks": "\n\nset of double doors, one flight of stairs, top of the stairs"
+  },
+  "Walk down stairs. Walk towards room with sette. Wait at that door. ": {
+    "actions": "\n\nAction 1: Walk down stairs\nAction 2: Walk towards room with sette\nAction 3: Wait at that door",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: room with sette\nLandmark 3: that door"
+  },
+  "Go down the stairs, and enter the room ahead on the left side. Stop at the edge of the shelves on your right. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Enter the room ahead on the left side\nAction 3: Stop at the edge of the shelves on your right",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: room\nLandmark 3: shelves"
+  },
+  "Turn and walk out of the room into the hallway. Walk down the flight of steps ahead towards the lower level of the home. Walk down the steps towards the next platform with a rug on the ground. Continue down the next flight of stairs to the bottom. ": {
+    "actions": "\n\nAction 1: Turn and walk out of the room into the hallway\nAction 2: Walk down the flight of steps ahead towards the lower level of the home\nAction 3: Walk down the steps towards the next platform with a rug on the ground\nAction 4: Continue down the next flight of stairs to the bottom",
+    "landmarks": "\n\nLandmark: hallway\nLandmark: flight of steps\nLandmark: lower level of the home\nLandmark: platform\nLandmark: rug on the ground\nLandmark: flight of stairs\nLandmark: bottom"
+  },
+  "Walk up the stairs. Go up a few stairs across from the open door. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Go up a few stairs across from the open door",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: open door"
+  },
+  "Exit sitting room and go straight to steps. Take steps down. turn right at landing and continue down steps. Stop in the hallway. ": {
+    "actions": "\n\nAction 1: Exit sitting room\nAction 2: Go straight to steps\nAction 3: Take steps down\nAction 4: Turn right at landing\nAction 5: Continue down steps\nAction 6: Stop in the hallway",
+    "landmarks": "\n\nsitting room, steps, landing, hallway"
+  },
+  "Go straight and up the stairs. Turn left and continue up the stairs. Wait in that floor with the long blue carpet. ": {
+    "actions": "\n\nAction 1: Go straight\nAction 2: Go up the stairs\nAction 3: Turn left\nAction 4: Continue up the stairs\nAction 5: Wait on the floor with the long blue carpet",
+    "landmarks": "\n\nstairs\nfloor with the long blue carpet"
+  },
+  "Turn around and  walk up the stairs. Wait in the room with the red carpet and book shelves. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Walk up the stairs\nAction 3: Wait in the room with the red carpet and book shelves",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: room with the red carpet and book shelves"
+  },
+  "Go up the first set of stairs. At the landing go up the first two stairs on the second set and stop. ": {
+    "actions": "\n\nAction 1: Go up the first set of stairs\nAction 2: Go up the first two stairs on the second set\nAction 3: Stop",
+    "landmarks": "\n\nLandmark 1: first set of stairs\nLandmark 2: second set\nLandmark 3: first two stairs"
+  },
+  "Exit into the hallway, turn right and head downstairs until you reach the door, turn right and continue down the stairs, and wait at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Exit into the hallway\nAction 2: Turn right\nAction 3: Head downstairs until you reach the door\nAction 4: Turn right\nAction 5: Continue down the stairs\nAction 6: Wait at the bottom of the stairs",
+    "landmarks": "\n\nhallway, door, stairs, bottom of the stairs"
+  },
+  "Exit the room then turn right and go down the stairs and turn right and go down the other stairs then stop. ": {
+    "actions": "\n\nAction 1: Exit the room\nAction 2: Turn right\nAction 3: Go down the stairs\nAction 4: Turn right\nAction 5: Go down the other stairs\nAction 6: Stop",
+    "landmarks": "\n\nLandmark 1: the room\nLandmark 2: the stairs\nLandmark 3: the other stairs"
+  },
+  "walk up the staircase onto the first landing, turn left, and walk up the second set of stairs on your left. Once you make it to the next landing walk through the middle doorway and stop in front of the wood table with a large statue next to it. ": {
+    "actions": "\n\nAction 1: Walk up the staircase onto the first landing\nAction 2: Turn left\nAction 3: Walk up the second set of stairs on your left\nAction 4: Walk through the middle doorway\nAction 5: Stop in front of the wood table with a large statue next to it",
+    "landmarks": "\n\nstaircase, first landing, second set of stairs, middle doorway, wood table, large statue"
+  },
+  "Continue up the stairs and wait atop the red door mat in front of the door with the black handle on the right. ": {
+    "actions": "\n\nAction 1: Continue up the stairs\nAction 2: Wait atop the red door mat in front of the door with the black handle on the right",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: red door mat\nLandmark 3: door with the black handle"
+  },
+  "Go down the stairs, at the two rugs make a sharp right and take a step down the stair and stop. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Make a sharp right at the two rugs\nAction 3: Take a step down the stair\nAction 4: Stop",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: two rugs\nLandmark 3: stair"
+  },
+  "walk through the doorway opposite of the fireplace, turn right and walk down the stairs turn right,  and walk down the second set of stairs, stop at the bottom. ": {
+    "actions": "\n\nAction 1: Walk through the doorway opposite of the fireplace\nAction 2: Turn right\nAction 3: Walk down the stairs\nAction 4: Turn right\nAction 5: Walk down the second set of stairs\nAction 6: Stop at the bottom",
+    "landmarks": "\n\ndoorway, fireplace, stairs, second set of stairs"
+  },
+  "Exit room with fireplace, turn right and go down stairs, turn right and go down stairs again, stop at base of stairs. ": {
+    "actions": "\n\nAction 1: Exit room with fireplace\nAction 2: Turn right\nAction 3: Go down stairs\nAction 4: Turn right\nAction 5: Go down stairs\nAction 6: Stop at base of stairs",
+    "landmarks": "\n\nroom with fireplace, stairs, base of stairs"
+  },
+  "Turn right and go through the door. Go down the hall way and go up the stairway to the left. Continue up the stairway to the left. Wait by the statue. ": {
+    "actions": "\n\nAction 1: Turn right\nAction 2: Go through the door\nAction 3: Go down the hallway\nAction 4: Go up the stairway to the left\nAction 5: Continue up the stairway to the left\nAction 6: Wait by the statue",
+    "landmarks": "\n\ndoor\nhallway\nstairway to the left\nstatue"
+  },
+  "Turn right, go through the doorway and head up the stairs. Once you get up the stairs to the landing turn right and head through that doorway. Go into the room ahead of you. There should be a door to your left, and in front of you should be a fireplace with a portrait of a man above it. You are at your destination. ": {
+    "actions": "\n\n- Turn right\n- Go through the doorway\n- Head up the stairs\n- Turn right at the landing\n- Go through the doorway\n- Enter the room ahead",
+    "landmarks": "\n\ndoorway\nstairs\nlanding\nroom ahead"
+  },
+  "Turn left into the second door. Turn right and go up the stairs. Turn left and go up four steps then stop. ": {
+    "actions": "\n\nAction 1: Turn left into the second door\nAction 2: Turn right and go up the stairs\nAction 3: Turn left and go up four steps\nAction 4: Stop",
+    "landmarks": "\n\nLandmark 1: second door\nLandmark 2: stairs\nLandmark 3: four steps"
+  },
+  "Go down the stairs. When you get to the next floor turn right and continue going down the stairs. Go down two steps then stop. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right at the next floor\nAction 3: Continue going down the stairs\nAction 4: Go down two steps\nAction 5: Stop",
+    "landmarks": "\n\nstairs, next floor, steps"
+  },
+  "Turn around and walk towards the stairs. Walk down the first flight of stairs. Continue down the second flight of stairs and stop in the middle of the little hallway at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Walk towards the stairs\nAction 3: Walk down the first flight of stairs\nAction 4: Continue down the second flight of stairs\nAction 5: Stop in the middle of the little hallway at the bottom of the stairs",
+    "landmarks": "\n\nstairs\nfirst flight of stairs\nsecond flight of stairs\nlittle hallway\nbottom of the stairs"
+  },
+  "Leave the wine room and go up the stairs.  At the landing with the door with the blue glass, go up the next set of stairs.  Stop at the top of these stairs without going up another level. ": {
+    "actions": "\n\nAction 1: Leave the wine room\nAction 2: Go up the stairs\nAction 3: Go up the next set of stairs at the landing with the door with the blue glass\nAction 4: Stop at the top of these stairs without going up another level",
+    "landmarks": "\n\nwine room\nstairs\nlanding with the door with the blue glass\ntop of these stairs"
+  },
+  "Continue up the flight of stairs to the landing, then climb one more flight of stairs. At the top of the second flight, continue forward and enter the room directly ahead. ": {
+    "actions": "\n\nAction 1: Continue up the flight of stairs to the landing\nAction 2: Climb one more flight of stairs\nAction 3: Continue forward\nAction 4: Enter the room directly ahead",
+    "landmarks": "\n\nLandmark 1: flight of stairs\nLandmark 2: landing\nLandmark 3: room directly ahead"
+  },
+  "Go down the steps to the landing. Turn right and continue down the steps. turn slight right and enter the doorway in the middle with the large rug. Stop at the chair. ": {
+    "actions": "\n\nAction 1: Go down the steps to the landing\nAction 2: Turn right\nAction 3: Continue down the steps\nAction 4: Turn slight right\nAction 5: Enter the doorway in the middle with the large rug\nAction 6: Stop at the chair",
+    "landmarks": "\n\nsteps\nlanding\ndoorway in the middle with the large rug\nchair"
+  },
+  "Go straight down the stairs and take the first right doorway. Continue down the stairs and stop once you reach the bottom. ": {
+    "actions": "\n\nAction 1: Go straight down the stairs\nAction 2: Take the first right doorway\nAction 3: Continue down the stairs\nAction 4: Stop at the bottom",
+    "landmarks": "\n\nstairs, first right doorway, stairs, bottom"
+  },
+  "Exit the room by the smaller of the two doorways.  Turn right and go down the stairs.  At the landing, turn right, and go half way down the second flight of stairs.  Stop there. ": {
+    "actions": "\n\nAction 1: Exit the room through the smaller doorway\nAction 2: Turn right\nAction 3: Go down the stairs\nAction 4: Turn right at the landing\nAction 5: Go halfway down the second flight of stairs\nAction 6: Stop",
+    "landmarks": "\n\nLandmark 1: smaller doorway\nLandmark 2: stairs\nLandmark 3: landing\nLandmark 4: second flight of stairs"
+  },
+  "Walk through the open door to the right of the boxes on the floor. Walk past the bathroom on the left. Walk down the stairs to the left. Wait on the area rug on the stair landing. ": {
+    "actions": "\n\nAction 1: Walk through the open door to the right of the boxes on the floor.\nAction 2: Walk past the bathroom on the left.\nAction 3: Walk down the stairs to the left.\nAction 4: Wait on the area rug on the stair landing.",
+    "landmarks": "\n\nLandmark 1: open door\nLandmark 2: boxes on the floor\nLandmark 3: bathroom\nLandmark 4: stairs\nLandmark 5: area rug\nLandmark 6: stair landing"
+  },
+  "Turn around and exit the room. Walk through the next doorway and then turn left. Walk down the stairs and stop on the platform with the white door. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Exit the room\nAction 3: Walk through the next doorway\nAction 4: Turn left\nAction 5: Walk down the stairs\nAction 6: Stop on the platform with the white door",
+    "landmarks": "\n\nthe room, the next doorway, the stairs, the platform with the white door"
+  },
+  "After you walk up the stairs make a right and walk up the second flight of stairs. Then make a left and walk to the sixth step and wait. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Make a right\nAction 3: Walk up the second flight of stairs\nAction 4: Make a left\nAction 5: Walk to the sixth step\nAction 6: Wait",
+    "landmarks": "\n\nstairs\nsecond flight of stairs\nsixth step"
+  },
+  "Turn around and go down the stairs. Turn right at the bottom of the stairs and then go into the room with the rug and the table. Stop here. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go down the stairs\nAction 3: Turn right at the bottom of the stairs\nAction 4: Go into the room with the rug and the table\nAction 5: Stop here",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: bottom of the stairs\nLandmark 3: room with the rug and the table"
+  },
+  "Walk up two flights of stairs and continue onto the long rug in the hallway. Stop in the middle of the long rug and turn left. Enter the room and wait on the pink rug next to the lamp that is sitting on a cabinet. ": {
+    "actions": "\n\nAction 1: Walk up two flights of stairs\nAction 2: Continue onto the long rug in the hallway\nAction 3: Stop in the middle of the long rug\nAction 4: Turn left\nAction 5: Enter the room\nAction 6: Wait on the pink rug next to the lamp that is sitting on a cabinet",
+    "landmarks": "\n\ntwo flights of stairs, long rug, hallway, room, pink rug, lamp, cabinet"
+  },
+  "Go straight and exit the room then go up the stairs on your left until you get to the top and wait there by the statue. ": {
+    "actions": "\n\nAction 1: Go straight\nAction 2: Exit the room\nAction 3: Go up the stairs on the left\nAction 4: Reach the top\nAction 5: Wait by the statue",
+    "landmarks": "\n\nroom, stairs, statue"
+  },
+  "Walk away from the fireplace, past the table. Go through the door and up the stairs. Go past the first landing. Stop on the second stair up from the landing. ": {
+    "actions": "\n\nAction 1: Walk away from the fireplace\nAction 2: Walk past the table\nAction 3: Go through the door\nAction 4: Go up the stairs\nAction 5: Go past the first landing\nAction 6: Stop on the second stair up from the landing",
+    "landmarks": "\n\nfireplace\ntable\ndoor\nstairs\nfirst landing\nlanding"
+  },
+  "Go down the stairs and turn right. Keep going down the stairs and stop in the doorway of the living room. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Keep going down the stairs\nAction 4: Stop in the doorway of the living room",
+    "landmarks": "\n\nstairs, doorway of the living room"
+  },
+  "Go down the stairs.  Go into the room straight ahead on the slight left. Wait there. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Enter the room straight ahead on the slight left\nAction 3: Wait there",
+    "landmarks": "\n\nstairs, room straight ahead on the slight left"
+  },
+  "Walk up the stairway and turn right on the landing. Walk up the stairway and down the hallway. Turn right into the dinning room. ": {
+    "actions": "\n\nAction 1: Walk up the stairway\nAction 2: Turn right on the landing\nAction 3: Walk up the stairway\nAction 4: Walk down the hallway\nAction 5: Turn right into the dinning room",
+    "landmarks": "\n\nstairway, landing, hallway, dinning room"
+  },
+  "Walk up the stairs, take a left and continue up the stairs, then head straight up the radiator, enter the door on the left and stand near the table. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Take a left\nAction 3: Continue up the stairs\nAction 4: Head straight up the radiator\nAction 5: Enter the door on the left\nAction 6: Stand near the table",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: radiator\nLandmark 3: door\nLandmark 4: table"
+  },
+  "Go up two flights of stairs, and go into the middle room.  Stop in front of the table. ": {
+    "actions": "\n\nAction 1: Go up two flights of stairs\nAction 2: Go into the middle room\nAction 3: Stop in front of the table",
+    "landmarks": "\n\ntwo flights of stairs, middle room, table"
+  },
+  "Head down the stairs, turn right and continue down the stairs until you reach a door, turn right and continue further down to the bottom of the stairs, wait there near two door frames. ": {
+    "actions": "\n\nAction 1: Head down the stairs\nAction 2: Turn right\nAction 3: Continue down the stairs until reaching a door\nAction 4: Turn right\nAction 5: Continue down to the bottom of the stairs\nAction 6: Wait near two door frames",
+    "landmarks": "\n\n- stairs\n- door\n- bottom of the stairs\n- two door frames"
+  },
+  "Go down the stairs. Turn right and continue going down the stairs. Walk straight and slightly right down the hallway.Go into the room on the right. Wait there. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Continue going down the stairs\nAction 4: Walk straight and slightly right down the hallway\nAction 5: Go into the room on the right\nAction 6: Wait there",
+    "landmarks": "\n\nstairs, hallway, room on the right"
+  },
+  "Walk away from the couch, through the doorway and up the staircase on the left. Continue past the first landing, up the second set of stairs and stop. ": {
+    "actions": "\n\nAction 1: Walk away from the couch\nAction 2: Pass through the doorway\nAction 3: Ascend the staircase on the left\nAction 4: Continue past the first landing\nAction 5: Ascend the second set of stairs\nAction 6: Stop",
+    "landmarks": "\n\ncouch, doorway, staircase on the left, first landing, second set of stairs"
+  },
+  "Walk forward, and go up the stairs. Go up the next set of stairs passing the hieroglyphs. Stop at the top of this set of stairs. ": {
+    "actions": "\n\nAction 1: Walk forward\nAction 2: Go up the stairs\nAction 3: Go up the next set of stairs passing the hieroglyphs\nAction 4: Stop at the top of this set of stairs",
+    "landmarks": "\n\nlandmark: stairs\nlandmark: next set of stairs\nlandmark: hieroglyphs\nlandmark: top of this set of stairs"
+  },
+  "Walk down the stairs and go straight down the hallway. Turn left into the room and wait near the dining table. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Go straight down the hallway\nAction 3: Turn left into the room\nAction 4: Wait near the dining table",
+    "landmarks": "\n\nstairs, hallway, room, dining table"
+  },
+  "Walk up the stairs and wait on the second step of the second set of stairs. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Wait on the second step of the second set of stairs",
+    "landmarks": "\n\nstairs\nsecond step of the second set of stairs"
+  },
+  "Exit through the door to the right. Walk by the bathroom and through another door into the landing. Go all the way up the stairs. Wait there. ": {
+    "actions": "\n\nAction 1: Exit through the door to the right\nAction 2: Walk by the bathroom\nAction 3: Go through another door into the landing\nAction 4: Go all the way up the stairs\nAction 5: Wait there",
+    "landmarks": "\n\ndoor to the right\nbathroom\nanother door\nlanding\nstairs"
+  },
+  "Walk down both sets of stairs, through the doorway and wait by the rug. ": {
+    "actions": "\n\nAction 1: Walk down both sets of stairs\nAction 2: Go through the doorway\nAction 3: Wait by the rug",
+    "landmarks": "\n\nLandmark 1: both sets of stairs\nLandmark 2: doorway\nLandmark 3: rug"
+  },
+  "Go down the stairs. Enter the door on your left and stop. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Enter the door on your left\nAction 3: Stop",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: door on your left"
+  },
+  "Turn around and walk past the heiroglypics picture.  Walk up the steps and when you get to the landing, turn and continue up 3 more steps and then wait. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Walk past the heiroglypics picture\nAction 3: Walk up the steps\nAction 4: Turn at the landing\nAction 5: Continue up 3 more steps\nAction 6: Wait",
+    "landmarks": "\n\nheiroglypics picture, steps, landing, 3 more steps"
+  },
+  "Turn around and head up the stairs to the first landing and continue to the second landing. Wait near the statue. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Head up the stairs to the first landing\nAction 3: Continue to the second landing\nAction 4: Wait near the statue",
+    "landmarks": "\n\nstairs, first landing, second landing, statue"
+  },
+  "Walk down the stairs and to the right. Walk down the stairs and stop in front of the table. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Turn right\nAction 3: Walk down the stairs\nAction 4: Stop in front of the table",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: table"
+  },
+  "Walk up the stairs to the second landing. At the top take a right and enter the room. Step on the rug with the doorway on the left. Stop here. ": {
+    "actions": "\n\nAction 1: Walk up the stairs to the second landing\nAction 2: Turn right at the top\nAction 3: Enter the room\nAction 4: Step onto the rug with the doorway on the left\nAction 5: Stop",
+    "landmarks": "\n\nstairs, second landing, room, rug, doorway"
+  },
+  "Walk downstairs and walk into the room on your left.  Stop just inside the room on the corner of the rug. ": {
+    "actions": "\n\nAction 1: Walk downstairs\nAction 2: Walk into the room on the left\nAction 3: Stop just inside the room on the corner of the rug",
+    "landmarks": "\n\nLandmark 1: downstairs\nLandmark 2: room on the left\nLandmark 3: corner of the rug"
+  },
+  "Exit the bathroom, and walk to the stair landing. Walk down the stairs. Make a hard left just before the radiator. Wait at the buffet in the dining room. ": {
+    "actions": "\n\nAction 1: Exit the bathroom\nAction 2: Walk to the stair landing\nAction 3: Walk down the stairs\nAction 4: Make a hard left just before the radiator\nAction 5: Wait at the buffet in the dining room",
+    "landmarks": "\n\nLandmark 1: bathroom\nLandmark 2: stair landing\nLandmark 3: stairs\nLandmark 4: radiator\nLandmark 5: buffet\nLandmark 6: dining room"
+  },
+  "Walk up the stairs and keep going up when you get to the landing.  Stop on the second step from the very top. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Continue ascending from the landing\nAction 3: Stop on the second step from the very top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: landing\nLandmark 3: second step from the very top"
+  },
+  "Walk up all the stairs to the top, and stop at the second stair from the top. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Stop at the second stair from the top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: second stair from the top"
+  },
+  "Turn around and go down the staircase.  Once down, go through the door that is straight but slightly to the right.  This room you enter will be a living room/den type of room.  Wait right at the entrance, by the couch. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go down the staircase\nAction 3: Go through the door that is straight but slightly to the right\nAction 4: Wait right at the entrance, by the couch",
+    "landmarks": "\n\nstaircase, door, entrance, couch"
+  },
+  "Exit the room into the hallway and go up the stairs. Stop on the second landing. ": {
+    "actions": "\n\nAction 1: Exit the room into the hallway\nAction 2: Go up the stairs\nAction 3: Stop on the second landing",
+    "landmarks": "\n\nroom\nhallway\nstairs\nsecond landing"
+  },
+  "Exit sitting room, turn left and go up stairs. At landing turn left and go up stairs. Stop at top of stairs. ": {
+    "actions": "\n\nAction 1: Exit sitting room\nAction 2: Turn left\nAction 3: Go up stairs\nAction 4: Turn left at landing\nAction 5: Go up stairs\nAction 6: Stop at top of stairs",
+    "landmarks": "\n\nsitting room\nstairs\nlanding\ntop of stairs"
+  },
+  "Go up two flights of stairs, and go into the left room with the red rug. ": {
+    "actions": "\n\nAction 1: Go up two flights of stairs\nAction 2: Enter the left room with the red rug",
+    "landmarks": "\n\ntwo flights of stairs, red rug"
+  },
+  "Exit the bathroom and go down the stairs. Enter the last doorway on the left and stop just before stepping on the rug. ": {
+    "actions": "\n\nAction 1: Exit the bathroom\nAction 2: Go down the stairs\nAction 3: Enter the last doorway on the left\nAction 4: Stop just before stepping on the rug",
+    "landmarks": "\n\nbathroom, stairs, last doorway on the left, rug"
+  },
+  "Go straight and then turn right. Go straight until you get to the stairs. Go up the stairs about half way then stop. ": {
+    "actions": "\n\nAction 1: Go straight\nAction 2: Turn right\nAction 3: Go straight until you get to the stairs\nAction 4: Go up the stairs about half way\nAction 5: Stop",
+    "landmarks": "\n\nLandmark 1: stairs"
+  },
+  "Descend down the stairs. Turn left and stop in the room. ": {
+    "actions": "\n\nAction 1: Descend down the stairs\nAction 2: Turn left\nAction 3: Stop in the room",
+    "landmarks": "\n\nstairs, room"
+  },
+  "Walk up the steps that curve left. Stop on the fourth step from the top. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Follow the leftward curve\nAction 3: Locate the fourth step from the top\nAction 4: Stop on the fourth step from the top",
+    "landmarks": "\n\nLandmark 1: steps\nLandmark 2: fourth step from the top"
+  },
+  "Go up all the stairs and stop on the rug at the top. ": {
+    "actions": "\n\nAction 1: Go up all the stairs\nAction 2: Stop on the rug at the top",
+    "landmarks": "\n\nall the stairs, the rug at the top"
+  },
+  "Go down the stairs and towards the front door.  Turn into the arched doorway to one side of the front door and face into the room with the round rug and shelves. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Move towards the front door\nAction 3: Turn into the arched doorway to one side of the front door\nAction 4: Face into the room with the round rug and shelves",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: front door\nLandmark 3: arched doorway\nLandmark 4: room with the round rug and shelves"
+  },
+  "Go up the stairs and stop at the top near the mirror. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Stop at the top near the mirror",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: mirror"
+  },
+  "turn around and walk down the hall. Then go halfway up the stairs and stand next to the second glass rose picture. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Walk down the hall\nAction 3: Go halfway up the stairs\nAction 4: Stand next to the second glass rose picture",
+    "landmarks": "\n\nthe hall, the stairs, the second glass rose picture"
+  },
+  "Go upstairs. Wait four steps to the top. ": {
+    "actions": "\n\nAction 1: Go upstairs\nAction 2: Wait four steps to the top",
+    "landmarks": "\n\nupstairs, top"
+  },
+  "Walk down stairs.  Once you reach the bottom, turn hard left.  Enter the room straight ahead.  Wait here. ": {
+    "actions": "\n\nAction 1: Walk down stairs\nAction 2: Turn hard left\nAction 3: Enter the room straight ahead\nAction 4: Wait here",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: room straight ahead"
+  },
+  "Walk to the foyer and go up the stairs on the right. Stop once you have gone up eight stairs. ": {
+    "actions": "\n\nAction 1: Walk to the foyer\nAction 2: Go up the stairs on the right\nAction 3: Stop after ascending eight stairs",
+    "landmarks": "\n\nLandmark 1: foyer\nLandmark 2: stairs on the right"
+  },
+  "Go straight and go up the stairs to your right. Go up nine steps then stop. ": {
+    "actions": "\n\nAction 1: Go straight\nAction 2: Go up the stairs to the right\nAction 3: Go up nine steps\nAction 4: Stop",
+    "landmarks": "\n\nLandmark 1: stairs to the right\nLandmark 2: nine steps"
+  },
+  "Go down four stairs. Go down three stairs. Go to the wood bench. Go to the flower vase. Go to the round wood doorway. Go to the dining table. ": {
+    "actions": "\n\nAction 1: Go down four stairs\nAction 2: Go down three stairs\nAction 3: Go to the wood bench\nAction 4: Go to the flower vase\nAction 5: Go to the round wood doorway\nAction 6: Go to the dining table",
+    "landmarks": "\n\nfour stairs, three stairs, wood bench, flower vase, round wood doorway, dining table"
+  },
+  "Head down the stairs and take a left through the archway.  Go through the wooden archway and stop next to the table and behind the couch. ": {
+    "actions": "\n\nAction 1: Head down the stairs\nAction 2: Take a left through the archway\nAction 3: Go through the wooden archway\nAction 4: Stop next to the table and behind the couch",
+    "landmarks": "\n\nstairs, archway, wooden archway, table, couch"
+  },
+  "Go up the stairs, stop at the fifth step to the top. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Stop at the fifth step to the top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: fifth step to the top"
+  },
+  "Continue down the stairs.  You'll see a big starburst tile on the floor, turn right and go into the first doorway on the right.  There will be a big mirror in the room.  You'll stop and wait just inside this room. ": {
+    "actions": "\n\nAction 1: Continue down the stairs\nAction 2: Turn right\nAction 3: Go into the first doorway on the right\nAction 4: Stop and wait just inside the room",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: first doorway on the right\nLandmark 3: room"
+  },
+  "Go up the stairs. At the top of the stairs step on the rug. Stop on the rug close to the window on the right. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Step on the rug\nAction 3: Stop on the rug close to the window on the right",
+    "landmarks": "\n\nstairs, rug, window on the right"
+  },
+  "Go down the stairs and take a right and stop in the hallway before you are under the star chandelier. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Take a right\nAction 3: Stop in the hallway before the star chandelier",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: hallway\nLandmark 3: star chandelier"
+  },
+  "Walk down the corridor and upstairs. Stop halfway up the stairs. ": {
+    "actions": "\n\nAction 1: Walk down the corridor\nAction 2: Go upstairs\nAction 3: Stop halfway up the stairs",
+    "landmarks": "\n\nLandmark 1: corridor\nLandmark 2: stairs"
+  },
+  "Go down the stairs. At the bottom of the stairs go into the library which is the second room on the right. Stop on the rug close to the books on the shelf. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Enter the library (second room on the right)\nAction 3: Stop on the rug close to the books on the shelf",
+    "landmarks": "\n\nstairs\nlibrary\nrug\nbooks on the shelf"
+  },
+  "Move down the stairs and make a sharp right, turning right at the first available opportunity to continue in that direction, through the marbled opening to the next room. Move down that short hallway and stop at the edge of the circular room there. ": {
+    "actions": "\n\nAction 1: Move down the stairs\nAction 2: Make a sharp right turn at the first available opportunity\nAction 3: Continue through the marbled opening to the next room\nAction 4: Move down the short hallway\nAction 5: Stop at the edge of the circular room",
+    "landmarks": "\n\nstairs, marbled opening, short hallway, circular room"
+  },
+  "Go down the stairs, Turn left and enter the room. Wait near the chairs that are facing the fireplace. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn left\nAction 3: Enter the room\nAction 4: Wait near the chairs facing the fireplace",
+    "landmarks": "\n\nstairs\nroom\nchairs\nfireplace"
+  },
+  "Walk into the hall and turn right. Walk through the entryway on the left and across the atrium. Walk up to the tenth step and stop. ": {
+    "actions": "\n\nAction 1: Walk into the hall\nAction 2: Turn right\nAction 3: Walk through the entryway on the left\nAction 4: Walk across the atrium\nAction 5: Walk up to the tenth step\nAction 6: Stop",
+    "landmarks": "\n\nLandmark 1: hall\nLandmark 2: entryway on the left\nLandmark 3: atrium\nLandmark 4: tenth step"
+  },
+  "Walk down the stairs, and through the archway directly to the left of the wooden chair, Continue past the potted plant and through the wooden archway on the left onto the hardwood floor. Walk towards the dining table and stop. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Walk through the archway directly to the left of the wooden chair\nAction 3: Continue past the potted plant\nAction 4: Walk through the wooden archway on the left onto the hardwood floor\nAction 5: Walk towards the dining table\nAction 6: Stop",
+    "landmarks": "\n\nstairs, archway, wooden chair, potted plant, wooden archway, hardwood floor, dining table"
+  },
+  "Walk down the stairs towards and past the atrium.  Head towards the kitchen and wait in the dining area. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Move towards and past the atrium\nAction 3: Head towards the kitchen\nAction 4: Wait in the dining area",
+    "landmarks": "\n\nstairs, atrium, kitchen, dining area"
+  },
+  "Walk down the stairs. Walk forward and stop next to the door that is next to the recycling bin. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Walk forward\nAction 3: Stop next to the door next to the recycling bin",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: door\nLandmark 3: recycling bin"
+  },
+  "Start in the middle of the large room head towards the door that leads to the outside, turn left and head up the stairs, take a hard left, stop when you are inside the workout room. ": {
+    "actions": "\n\nStart: Begin in the middle of the large room\nMove: Head towards the door that leads to the outside\nTurn: Turn left\nMove: Head up the stairs\nTurn: Take a hard left\nStop: Stop when inside the workout room",
+    "landmarks": "\n\nLandmark: large room\nLandmark: door that leads to the outside\nLandmark: stairs\nLandmark: workout room"
+  },
+  "Go upstairs and wait at the top. ": {
+    "actions": "\n\nAction 1: Go upstairs\nAction 2: Wait at the top",
+    "landmarks": "\n\nLandmark 1: upstairs\nLandmark 2: the top"
+  },
+  "Go up the stairs and turn left at the top  Walk through the glass door and stop when you step inside the exercise room on the other side. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left at the top\nAction 3: Walk through the glass door\nAction 4: Stop when you step inside the exercise room on the other side",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: top\nLandmark 3: glass door\nLandmark 4: exercise room"
+  },
+  "Go up the stairs and wait at the top. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Wait at the top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: the top"
+  },
+  "Walk towards the door that leads to outside and then turn left before the door. Go up the staircase straight ahead. At the top of the stairs go into the weight room and wait there. ": {
+    "actions": "\n\nAction 1: Walk towards the door leading outside\nAction 2: Turn left before the door\nAction 3: Go up the staircase straight ahead\nAction 4: Enter the weight room\nAction 5: Wait in the weight room",
+    "landmarks": "\n\nLandmark 1: door leading outside\nLandmark 2: staircase\nLandmark 3: weight room"
+  },
+  "Go up the stairs. Turn left and go into the glass doors. Wait at the entrance. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left\nAction 3: Go into the glass doors\nAction 4: Wait at the entrance",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: glass doors\nLandmark 3: entrance"
+  },
+  "Go up the stairs. Turn left and stop inside the exercise room. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left\nAction 3: Stop inside the exercise room",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: exercise room"
+  },
+  "Walk downstairs and wait by the exterior door near the potted palm. ": {
+    "actions": "\n\nAction 1: Walk downstairs\nAction 2: Wait by the exterior door near the potted palm",
+    "landmarks": "\n\nLandmark 1: downstairs\nLandmark 2: exterior door\nLandmark 3: potted palm"
+  },
+  "Walk towards the door and take a left. Go up the stairs. At the top of the stairs take a left into the fitness room. In the fitness room stop after you pass the door. ": {
+    "actions": "\n\nAction 1: Walk towards the door\nAction 2: Take a left\nAction 3: Go up the stairs\nAction 4: Take a left into the fitness room\nAction 5: Pass the door\nAction 6: Stop",
+    "landmarks": "\n\nthe door, the stairs, the fitness room"
+  },
+  "Go down the stairs and straight down the hall. Veer right into the living room and walk into the kitchen. In the kitchen stop behind the chair on the right at the first black table. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Walk straight down the hall\nAction 3: Veer right into the living room\nAction 4: Walk into the kitchen\nAction 5: Stop behind the chair on the right at the first black table",
+    "landmarks": "\n\nstairs\nhall\nliving room\nkitchen\nchair on the right\nfirst black table"
+  },
+  "Go up the stairs and turn left through the glass doors until you reach the first exercise machine. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Turn left\nAction 3: Pass through the glass doors\nAction 4: Proceed to the first exercise machine",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: glass doors\nLandmark 3: first exercise machine"
+  },
+  "Walk up stairs.  Wait at top. ": {
+    "actions": "\n\nAction 1: Walk up stairs\nAction 2: Wait at top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: top"
+  },
+  "Walk up the steps and turn left. Stop just inside the fitness room. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Turn left\nAction 3: Stop just inside the fitness room",
+    "landmarks": "\n\nLandmark 1: steps\nLandmark 2: fitness room"
+  },
+  "continue down stairs, walk straight into lobby stop at tree. ": {
+    "actions": "\n\nAction 1: Continue down stairs\nAction 2: Walk straight into lobby\nAction 3: Stop at tree",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: lobby\nLandmark 3: tree"
+  },
+  "Turn left and walk into the small hallway and up the stairs. Stop at the very top of the stairs. ": {
+    "actions": "\n\nAction 1: Turn left\nAction 2: Walk into the small hallway\nAction 3: Walk up the stairs\nAction 4: Stop at the top of the stairs",
+    "landmarks": "\n\nLandmark 1: small hallway\nLandmark 2: stairs\nLandmark 3: top of the stairs"
+  },
+  "Continue up the stairs and wait inside the gym. ": {
+    "actions": "\n\nAction 1: Continue up the stairs\nAction 2: Wait inside the gym",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: gym"
+  },
+  "With the fireplace to your right, walk straight past the big potted plant and up the stairs.  Stop at the very top of the stairs. ": {
+    "actions": "\n\nAction 1: Walk straight past the big potted plant\nAction 2: Walk up the stairs\nAction 3: Stop at the very top of the stairs",
+    "landmarks": "\n\nLandmark 1: big potted plant\nLandmark 2: stairs\nLandmark 3: very top of the stairs"
+  },
+  "Turn around on the stairs and go down them.  Then go past the couch, veer to the right and towards the kitchen.  Stop and wait by the big counter. ": {
+    "actions": "\n\nAction 1: Turn around on the stairs\nAction 2: Go down the stairs\nAction 3: Go past the couch\nAction 4: Veer to the right\nAction 5: Move towards the kitchen\nAction 6: Stop and wait by the big counter",
+    "landmarks": "\n\nstairs, couch, kitchen, big counter"
+  },
+  "Go straight up the stairs. Wait at the top. ": {
+    "actions": "\n\nAction 1: Go straight up the stairs\nAction 2: Wait at the top",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: the top"
+  },
+  "Go downstairs and stop at the bottom. ": {
+    "actions": "\n\nAction 1: Go downstairs\nAction 2: Stop at the bottom",
+    "landmarks": "\n\nLandmark 1: downstairs\nLandmark 2: the bottom"
+  },
+  "Walk up the steps and go left. Walk left past the beam and stop by the chair. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Go left\nAction 3: Walk left past the beam\nAction 4: Stop by the chair",
+    "landmarks": "\n\nLandmark 1: the steps\nLandmark 2: the beam\nLandmark 3: the chair"
+  },
+  "Go down the stairs and turn right. Head toward the pool table and when you get to the fireplace wait there. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Head toward the pool table\nAction 4: Wait at the fireplace",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: pool table\nLandmark 3: fireplace"
+  },
+  "Walk up stairs into sitting room, stop next to coffee table. ": {
+    "actions": "\n\nAction 1: Walk up stairs\nAction 2: Enter sitting room\nAction 3: Stop next to coffee table",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: sitting room\nLandmark 3: coffee table"
+  },
+  "Go up the stairs. Go left toward the couch and walk past it to the chair next to the fireplace. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Go left toward the couch\nAction 3: Walk past the couch\nAction 4: Walk to the chair next to the fireplace",
+    "landmarks": "\n\nstairs, couch, chair, fireplace"
+  },
+  "Go upstairs and stop in the sitting area, near the end table. ": {
+    "actions": "\n\nAction 1: Go upstairs\nAction 2: Stop in the sitting area near the end table",
+    "landmarks": "\n\nupstairs, sitting area, end table"
+  },
+  "Turn right. Walk to the end of the hall. Turn right and enter the door. ": {
+    "actions": "\n\nAction 1: Turn right\nAction 2: Walk to the end of the hall\nAction 3: Turn right\nAction 4: Enter the door",
+    "landmarks": "\n\nLandmark 1: end of the hall\nLandmark 2: door"
+  },
+  "Take around, go towards the bed with the trunk, take a left and head down the stairway and stop right before the end of the stairway. ": {
+    "actions": "\n\nAction 1: Navigate around the current area\nAction 2: Move towards the bed with the trunk\nAction 3: Turn left\nAction 4: Descend the stairway\nAction 5: Stop before the end of the stairway",
+    "landmarks": "\n\nLandmark 1: bed with the trunk\nLandmark 2: stairway\nLandmark 3: end of the stairway"
+  },
+  "Go down the stairs and stop. ": {
+    "actions": "\n\nAction 1: Descend stairs\nAction 2: Stop",
+    "landmarks": "\n\nstairs"
+  },
+  "Make a left at the end of the bed. Walk to the banister. Walk to the bottom of the stairs to the left of this point. Make a right and move to the panoramic checker doors. ": {
+    "actions": "\n\nAction 1: Make a left at the end of the bed\nAction 2: Walk to the banister\nAction 3: Walk to the bottom of the stairs to the left of this point\nAction 4: Make a right\nAction 5: Move to the panoramic checker doors",
+    "landmarks": "\n\nend of the bed\nbanister\nbottom of the stairs\npanoramic checker doors"
+  },
+  "Go up stairs. Turn left and wait by wooden beam. ": {
+    "actions": "\n\nAction 1: Go up stairs\nAction 2: Turn left\nAction 3: Wait by wooden beam",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: wooden beam"
+  },
+  "Turn around and go down the stairs next to the foot of the bed. Stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go down the stairs next to the foot of the bed\nAction 3: Stop at the bottom of the stairs",
+    "landmarks": "\n\nLandmark 1: stairs next to the foot of the bed\nLandmark 2: bottom of the stairs"
+  },
+  "Head towards the stairs and make a right. Go down the stairs all the way to the bottom floor and wait at the landing. ": {
+    "actions": "\n\nAction 1: Head towards the stairs\nAction 2: Make a right turn\nAction 3: Descend stairs to the bottom floor\nAction 4: Wait at the landing",
+    "landmarks": "\n\nstairs, bottom floor, landing"
+  },
+  "Go down the stairs. On the far wall at the bottom of the stairs there are two doors. Enter the door on the right into the bathroom and stop in the doorway. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Enter the door on the right into the bathroom\nAction 3: Stop in the doorway",
+    "landmarks": "\n\nstairs\ndoor on the right\nbathroom\ndoorway"
+  },
+  "Walk forward towards the stairs. ": {
+    "actions": "\n\nAction 1: Walk forward\nAction 2: Move towards the stairs",
+    "landmarks": "\n\nLandmark: the stairs"
+  },
+  "Walk up the stairs, turn left and walk straight towards the windows right after the living room furniture, stop right in front of windows. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Turn left\nAction 3: Walk straight towards the windows right after the living room furniture\nAction 4: Stop right in front of the windows",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: living room furniture\nLandmark 3: windows"
+  },
+  "Walk down the stairs and go to the room on the right and wait in the doorway of the bathroom. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Go to the room on the right\nAction 3: Wait in the doorway of the bathroom",
+    "landmarks": "\n\nstairs\nroom on the right\ndoorway of the bathroom"
+  },
+  "Continue down the wood staircase, turn right at the bottom and walk behind the two chairs toward the pool table. Turn right at the pool table and stop in front of the red chair with a brown leather foot stool. ": {
+    "actions": "\n\nAction 1: Continue down the wood staircase\nAction 2: Turn right at the bottom\nAction 3: Walk behind the two chairs toward the pool table\nAction 4: Turn right at the pool table\nAction 5: Stop in front of the red chair with a brown leather foot stool",
+    "landmarks": "\n\nwood staircase\ntwo chairs\npool table\nred chair with a brown leather foot stool"
+  },
+  "Head down the stairs from the loft, then head towards the doors that are ahead and slightly to the right from the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Descend the stairs from the loft\nAction 2: Proceed towards the doors ahead and slightly to the right from the bottom of the stairs",
+    "landmarks": "\n\nLandmark 1: the loft\nLandmark 2: the stairs\nLandmark 3: the doors"
+  },
+  "Walk towards the balcony and take the stairs down on the left. Wait at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Walk towards the balcony\nAction 2: Take the stairs down on the left\nAction 3: Wait at the bottom of the stairs",
+    "landmarks": "\n\nbalcony, stairs down on the left, bottom of the stairs"
+  },
+  "Go down the stairs to your right and stop when you get all the way down. ": {
+    "actions": "\n\nAction 1: Turn right toward the stairs\nAction 2: Descend the stairs\nAction 3: Stop at the bottom of the stairs",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: bottom of the stairs"
+  },
+  "Walk up the stairs and go straight. Stop next to the recliner that is next to the fireplace. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Go straight\nAction 3: Stop next to the recliner that is next to the fireplace",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: recliner\nLandmark 3: fireplace"
+  },
+  "Turn around and then turn right to walk all the way down the stairs. Stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Turn right\nAction 3: Walk down the stairs\nAction 4: Stop at the bottom of the stairs",
+    "landmarks": "\n\nstairs, bottom of the stairs"
+  },
+  "Go down the stairs and stop at the very bottom. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Stop at the bottom",
+    "landmarks": "\n\nstairs, bottom"
+  },
+  "Continue down the wooden staircase, following it to the right.  Once on the bottom floor.  Walk directly across the room towards the plaid couch.  Then turn right and proceed through the white door into the bathroom.  Step into the bathroom and stop just inside of the doorway. ": {
+    "actions": "\n\nAction 1: Continue down the wooden staircase to the right\nAction 2: Walk directly across the room towards the plaid couch\nAction 3: Turn right\nAction 4: Proceed through the white door into the bathroom\nAction 5: Step into the bathroom\nAction 6: Stop just inside the doorway",
+    "landmarks": "\n\nwooden staircase, plaid couch, white door, bathroom, doorway"
+  },
+  "Go down the stairs and turn right then wait by the glass doors that lead to the patio. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Wait by the glass doors that lead to the patio",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: glass doors that lead to the patio"
+  },
+  "Go down the stairs and go into the door on your right. Wait by the toilet. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Go into the door on the right\nAction 3: Wait by the toilet",
+    "landmarks": "\n\nstairs\ndoor on the right\ntoilet"
+  },
+  "Go down the wooden stairs. Wait by the doorway next to the wooden bench. ": {
+    "actions": "\n\nAction 1: Go down the wooden stairs\nAction 2: Wait by the doorway next to the wooden bench",
+    "landmarks": "\n\nLandmark 1: wooden stairs\nLandmark 2: doorway\nLandmark 3: wooden bench"
+  },
+  "I would like you to move forward, heading toward the lounge chair. Pivot and continue the forward momentum, bearing slightly to the left. Turn towards your left and begin walking down the stairs. When you reach the third step from the landing, stick around here and wait. ": {
+    "actions": "\n\nAction 1: Move forward toward the lounge chair\nAction 2: Pivot and continue forward, bearing slightly to the left\nAction 3: Turn left and walk down the stairs\nAction 4: Stop at the third step from the landing and wait",
+    "landmarks": "\n\nlounge chair\nstairs\nlanding"
+  },
+  "Walk down the stairs, stop at the bottom. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Stop at the bottom",
+    "landmarks": "\n\nstairs\nbottom"
+  },
+  "Go down the stairs and turn right.  Stop on the grey tile in front of the window panel farthest to the left. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Stop on the grey tile in front of the window panel farthest to the left",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: grey tile\nLandmark 3: window panel farthest to the left"
+  },
+  "Go down the staircase and at the bottom stop. ": {
+    "actions": "\n\nAction 1: Go down the staircase\nAction 2: Stop at the bottom",
+    "landmarks": "\n\nstaircase\nbottom"
+  },
+  "Turn Left. walk through bedroom. walk down stairs and go to entrance. ": {
+    "actions": "\n\nAction 1: Turn left\nAction 2: Walk through bedroom\nAction 3: Walk down stairs\nAction 4: Go to entrance",
+    "landmarks": "\n\nLandmark: bedroom\nLandmark: stairs\nLandmark: entrance"
+  },
+  "Walk towards the staircase.  Walk down steps.  Wait at bottom of stairs. ": {
+    "actions": "\n\nAction 1: Walk towards the staircase\nAction 2: Walk down steps\nAction 3: Wait at bottom of stairs",
+    "landmarks": "\n\nstaircase, steps, bottom of stairs"
+  },
+  "Walk up the stairs.  Walk forward through living room, past the wooden support pole.  Stop in front of the chair and futon. ": {
+    "actions": "\n\nAction 1: Walk up the stairs\nAction 2: Walk forward through the living room past the wooden support pole\nAction 3: Stop in front of the chair and futon",
+    "landmarks": "\n\nstairs\nliving room\nwooden support pole\nchair and futon"
+  },
+  "You need to walk down the stairs and when you get to the landing go to the last door on the right. Once you go inside the doorway of the bathroom wait. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Go to the last door on the right\nAction 3: Enter the bathroom doorway\nAction 4: Wait",
+    "landmarks": "\n\nstairs, last door on the right, bathroom doorway"
+  },
+  "Go to the bottom of the staircase. Turn right and go to the pool table. From the pool table, go to the coffee table. ": {
+    "actions": "\n\nAction 1: Go to the bottom of the staircase\nAction 2: Turn right\nAction 3: Go to the pool table\nAction 4: Go to the coffee table",
+    "landmarks": "\n\nLandmark 1: bottom of the staircase\nLandmark 2: pool table\nLandmark 3: coffee table"
+  },
+  "Continue up the stairs, walk towards the sitting area, go straight passed the table on the left. stop by the double doors. ": {
+    "actions": "\n\nAction 1: Continue up the stairs\nAction 2: Walk towards the sitting area\nAction 3: Go straight passed the table on the left\nAction 4: Stop by the double doors",
+    "landmarks": "\n\nstairs, sitting area, table on the left, double doors"
+  },
+  "Walk downstairs and go to the door on the right at the end of the room, and wait just inside the doorway. ": {
+    "actions": "\n\nAction 1: Walk downstairs\nAction 2: Go to the door on the right at the end of the room\nAction 3: Wait just inside the doorway",
+    "landmarks": "\n\n- downstairs\n- door on the right\n- end of the room\n- doorway"
+  },
+  "take the stairs then head for the kitchen. stop at the bottom of the stairs. ": {
+    "actions": "\n\nAction 1: Take the stairs\nAction 2: Head for the kitchen\nAction 3: Stop at the bottom of the stairs",
+    "landmarks": "\n\nthe stairs, the kitchen, the bottom of the stairs"
+  },
+  "Turn around and head down the stairs.  Then walk to the open white door and stand in the doorway. Wait by the sink. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Head down the stairs\nAction 3: Walk to the open white door\nAction 4: Stand in the doorway\nAction 5: Wait by the sink",
+    "landmarks": "\n\nstairs\nopen white door\ndoorway\nsink"
+  },
+  "Go up the stairs. Wait beside the support pillar for the stairs. ": {
+    "actions": "\n\nAction 1: Go up the stairs\nAction 2: Wait beside the support pillar for the stairs",
+    "landmarks": "\n\nLandmark 1: stairs\nLandmark 2: support pillar"
+  },
+  "enter the bedroom and veer left, continue to the top of the stairs, go down the stairs, continue straight and turn right after the support beam, stop in front of the glass pane doors. ": {
+    "actions": "\n\nAction 1: Enter the bedroom\nAction 2: Veer left\nAction 3: Continue to the top of the stairs\nAction 4: Go down the stairs\nAction 5: Continue straight\nAction 6: Turn right after the support beam\nAction 7: Stop in front of the glass pane doors",
+    "landmarks": "\n\nbedroom, top of the stairs, stairs, support beam, glass pane doors"
+  },
+  "Walk up the steps and turn left.  Wait by the wooden pillar next to the stairs. ": {
+    "actions": "\n\nAction 1: Walk up the steps\nAction 2: Turn left\nAction 3: Wait by the wooden pillar next to the stairs",
+    "landmarks": "\n\nLandmark 1: steps\nLandmark 2: wooden pillar\nLandmark 3: stairs"
+  },
+  "walk straight past Tv, past fridge, up 5 stairs and stop at the top. ": {
+    "actions": "\n\nAction 1: Walk straight past the TV\nAction 2: Walk past the fridge\nAction 3: Walk up 5 stairs\nAction 4: Stop at the top of the stairs",
+    "landmarks": "\n\nLandmark: TV\nLandmark: fridge\nLandmark: stairs\nLandmark: top of the stairs"
+  },
+  "Walk past the dining room table and towards the kitchen. Go up the first set of stairs to the left of the kitchen. Stop at the top of the stairs next to the white door. ": {
+    "actions": "\n\nAction 1: Walk past the dining room table\nAction 2: Walk towards the kitchen\nAction 3: Go up the first set of stairs to the left of the kitchen\nAction 4: Stop at the top of the stairs next to the white door",
+    "landmarks": "\n\ndining room table, kitchen, first set of stairs, white door"
+  },
+  "Walk past fridge. Walk up stairs. Wait on top of stair landing. ": {
+    "actions": "\n\nAction 1: Walk past fridge\nAction 2: Walk up stairs\nAction 3: Wait on top of stair landing",
+    "landmarks": "\n\nfridge, stairs, stair landing"
+  },
+  "Turn around, go past the fridge, and then turn right and go up the steps.  Just when you get to the top of the steps, stop.  Wait there. ": {
+    "actions": "\n\nAction 1: Turn around\nAction 2: Go past the fridge\nAction 3: Turn right\nAction 4: Go up the steps\nAction 5: Stop at the top of the steps\nAction 6: Wait there",
+    "landmarks": "\n\nthe fridge, the steps, the top of the steps"
+  },
+  "Face in the direction of the refrigerator and head towards the stairs to the left of the refrigerator. Climb the stairs, then go forward until you can turn right to get to the foot of a flight of carpet covered stairs. Stop of the first step of those stairs. ": {
+    "actions": "\n\nAction 1: Face the refrigerator\nAction 2: Head towards the stairs to the left of the refrigerator\nAction 3: Climb the stairs\nAction 4: Go forward until a right turn is available\nAction 5: Turn right to reach the foot of the carpet-covered stairs\nAction 6: Stop at the first step of the carpet-covered stairs",
+    "landmarks": "\n\nLandmark 1: refrigerator\nLandmark 2: stairs to the left of the refrigerator\nLandmark 3: carpet-covered stairs"
+  },
+  "Walk down the stairs, take the first right, and stop in front of the bathroom. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Take the first right\nAction 3: Stop in front of the bathroom",
+    "landmarks": "\n\nLandmark: stairs\nLandmark: bathroom"
+  },
+  "Walk towards the silver refrigerator.  Walk up the steps on the left.  Wait at top of stairs. ": {
+    "actions": "\n\nAction 1: Walk towards the silver refrigerator.\nAction 2: Walk up the steps on the left.\nAction 3: Wait at top of stairs.",
+    "landmarks": "\n\nLandmark 1: silver refrigerator\nLandmark 2: steps on the left\nLandmark 3: top of stairs"
+  },
+  "Walk past the refrigertor, turn right and walk up the stairs, stop just before the bannister of the stairs on your right. ": {
+    "actions": "\n\nAction 1: Walk past the refrigertor\nAction 2: Turn right\nAction 3: Walk up the stairs\nAction 4: Stop just before the bannister of the stairs on your right",
+    "landmarks": "\n\nrefrigertor\nstairs\nbannister of the stairs on your right"
+  },
+  "Turn right and go up the wood stairs. At the top walk forward and turn right. Then walk halfway up the stairs covered in carpet and stop. ": {
+    "actions": "\n\nAction 1: Turn right\nAction 2: Go up the wood stairs\nAction 3: Walk forward\nAction 4: Turn right\nAction 5: Walk halfway up the stairs covered in carpet\nAction 6: Stop",
+    "landmarks": "\n\nLandmark 1: wood stairs\nLandmark 2: stairs covered in carpet"
+  },
+  "Turn right and walk up the first set of stairs. Wait at the bottom of the second set of stairs. ": {
+    "actions": "\n\nAction 1: Turn right\nAction 2: Walk up the first set of stairs\nAction 3: Wait at the bottom of the second set of stairs",
+    "landmarks": "\n\nLandmark 1: first set of stairs\nLandmark 2: second set of stairs"
+  },
+  "Go up the steps next to the fridge. Then turn right toward the bathroom. Stop at the top of the steps. ": {
+    "actions": "\n\nAction 1: Go up the steps next to the fridge\nAction 2: Turn right toward the bathroom\nAction 3: Stop at the top of the steps",
+    "landmarks": "\n\nsteps\nfridge\nbathroom\ntop of the steps"
+  },
+  "Walk down the stairs and turn right at the bottom of the stairs. Go down the 3 steps and stop just outside the laundry room and bathroom. ": {
+    "actions": "\n\nAction 1: Walk down the stairs\nAction 2: Turn right at the bottom of the stairs\nAction 3: Go down the 3 steps\nAction 4: Stop just outside the laundry room and bathroom",
+    "landmarks": "\n\nLandmark: stairs\nLandmark: bottom of the stairs\nLandmark: 3 steps\nLandmark: laundry room\nLandmark: bathroom"
+  },
+  "Go down the stairs. Turn right and continue down another set of steps and go straight. Stop in front of the doors to the bathroom and laundry rooms. ": {
+    "actions": "\n\nAction 1: Go down the stairs\nAction 2: Turn right\nAction 3: Continue down another set of steps\nAction 4: Go straight\nAction 5: Stop in front of the doors to the bathroom and laundry rooms",
+    "landmarks": "\n\nstairs\nanother set of steps\ndoors to the bathroom and laundry rooms"
+  },
+  "Move through the kitchen with the square table to your right. Continue moving forward to the staircase just after the refrigerator. Walk up the stairs and stop 18 inches before the end of the stair railing to your right. ": {
+    "actions": "\n\nAction 1: Move through the kitchen with the square table to the right\nAction 2: Move forward to the staircase past the refrigerator\nAction 3: Walk up the stairs\nAction 4: Stop 18 inches before the end of the stair railing to the right",
+    "landmarks": "\n\nkitchen, square table, staircase, refrigerator, stairs, stair railing, end of the stair railing"
+  },
+  "Pass the fridge on the right and go up the steps then turn right and wait right at the top of the steps that go down. ": {
+    "actions": "\n\nAction 1: Pass the fridge on the right\nAction 2: Go up the steps\nAction 3: Turn right\nAction 4: Wait at the top of the steps that go down",
+    "landmarks": "\n\nLandmark 1: fridge\nLandmark 2: steps\nLandmark 3: top of the steps that go down"
+  },
+  "Walk past the fridge, up the steps, and into the hall. Stop next to the first door on the left. ": {
+    "actions": "\n\nAction 1: Walk past the fridge\nAction 2: Go up the steps\nAction 3: Enter the hall\nAction 4: Stop next to the first door on the left",
+    "landmarks": "\n\nthe fridge, the steps, the hall, the first door on the left"
+  },
+  "Travel up the stairs on right past the fridge, move down the hallway until the bottom on the stairwell, take a right towards the bathroom and wait just beyond the stairs. ": {
+    "actions": "\n\nAction 1: Travel up the stairs on the right past the fridge\nAction 2: Move down the hallway until the bottom on the stairwell\nAction 3: Take a right towards the bathroom\nAction 4: Wait just beyond the stairs",
+    "landmarks": "\n\nstairs on the right\nfridge\nhallway\nstairwell\nbathroom\nstairs"
+  }
+}
