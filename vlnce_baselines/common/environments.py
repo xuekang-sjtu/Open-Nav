@@ -16,15 +16,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fi
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from shared.ssa.planner import SimulatorAStarPlanner
-from shared.ssa.rollout import execute_waypoint_rollout
-
-
 @baseline_registry.register_env(name="VLNCEDaggerEnv")
 class VLNCEDaggerEnv(habitat.RLEnv):
     def __init__(self, config: Config, dataset: Optional[Dataset] = None):
         super().__init__(config.TASK_CONFIG, dataset)
-        self._ssa_planner = SimulatorAStarPlanner()
 
     def get_reward_range(self) -> Tuple[float, float]:
         # We don't use a reward for DAgger, but the baseline_registry requires
@@ -134,30 +129,10 @@ class VLNCEDaggerEnv(habitat.RLEnv):
             self._env.current_episode.info['collisions'] = []
         self._env.current_episode.info['collisions'] += collisions
 
-    def ssa_build_plan(self, pose: Dict[str, Any]):
-        start_pose = self._ssa_planner.current_pose(self._env)
-        plan = self._ssa_planner.build_plan(self._env, pose)
-        return {
-            "actions": [int(action) for action in plan.actions],
-            "rollout_steps": list(plan.rollout_steps),
-            "target_position": np.asarray(plan.target_position, dtype=np.float32).tolist(),
-            "target_yaw_deg": float(plan.target_yaw_deg),
-            "error": str(plan.error or ""),
-            "planned_action_sequence": ["SSA"] * len(plan.rollout_steps),
-            "planned_forward_actions": sum(1 for action in plan.actions if int(action) == 1),
-            "planned_rollout_steps": int(len(plan.rollout_steps)),
-            "start_pose": start_pose,
-        }
-
-    def ssa_reached_target(self, target_position: List[float], target_yaw_deg: float):
-        return self._ssa_planner.reached_target(
-            self._env,
-            np.asarray(target_position, dtype=np.float32),
-            float(target_yaw_deg),
-        )
-
-    def ssa_execute_plan(self, plan_result: Dict[str, Any]):
-        return execute_waypoint_rollout(self, self._ssa_planner, plan_result)
+    def _ssa_previous_step_collided(self) -> bool:
+        sim = getattr(self._env, "sim", None)
+        value = getattr(sim, "previous_step_collided", False)
+        return bool(value() if callable(value) else value)
         
 
 @baseline_registry.register_env(name="VLNCEInferenceEnv")
