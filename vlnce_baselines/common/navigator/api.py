@@ -9,12 +9,15 @@ import os
 # Resolve project root for shared model/data paths (cross-platform)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
 MODELS_ROOT = os.path.join(PROJECT_ROOT, "models")
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 # Add recognize_anything code to path
 sys.path.insert(0, os.path.join(MODELS_ROOT, "recognize_anything_code"))
 # Add the parent directory of SpatialBot3B so `import SpatialBot3B...` works
 sys.path.insert(0, MODELS_ROOT)
 
 from tenacity import retry, wait_random_exponential, stop_after_attempt
+from shared.llm_adapter import build_chat_extra_body, extract_message_text, normalize_api_key
 
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -45,7 +48,7 @@ class llmClient:
             model_type (str): Either "gpt" or "opensource"
             api_key (str): API key for OpenAI (if using GPT)
         '''
-        api_key = self._normalize_api_key(api_key)
+        api_key = normalize_api_key(api_key)
         # Configure based on model type
         if model_type == "gpt-4o-2024-08-06":
             self.model = model_type
@@ -75,8 +78,7 @@ class llmClient:
 
     @staticmethod
     def _normalize_api_key(api_key):
-        api_key = str(api_key or "").strip()
-        return api_key or "none"
+        return normalize_api_key(api_key)
 
     def set_model(self, model):
         self.model = model
@@ -98,19 +100,18 @@ class llmClient:
         }
         max_tokens = int(os.environ.get("OPENAI_MAX_TOKENS", "2048"))
         request_params["max_tokens"] = max_tokens
+        extra_body = build_chat_extra_body(self.model)
+        if extra_body:
+            request_params["extra_body"] = extra_body
 
         if num_output == 1:
             chat_response = self._completion_with_backoff(**request_params)
-            message = chat_response.choices[0].message
-            answer = message.content if message.content is not None else (getattr(message, "reasoning", None) or "")
-            return answer
+            return extract_message_text(chat_response.choices[0].message)
         else:
             responses = []
             for _ in range(num_output):
                 chat_response = self._completion_with_backoff(**request_params)
-                msg = chat_response.choices[0].message
-                c = msg.content if msg.content is not None else (getattr(msg, "reasoning", None) or "")
-                responses.append(c)
+                responses.append(extract_message_text(chat_response.choices[0].message))
             return responses
 
     

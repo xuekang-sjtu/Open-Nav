@@ -16,19 +16,12 @@ import habitat_extensions  # noqa: F401
 import vlnce_baselines     # noqa: F401
 from vlnce_baselines.config.default import get_config
 from habitat_baselines.common.baseline_registry import baseline_registry
-from resume_utils import collect_completed_episode_ids, filter_remaining_episode_ids
-from episode_filter import filter_episode_ids, parse_episode_ids
-
-
-R2R_V13_DATA_PATH = "../datasets/datasets/R2R_VLNCE_v1-3_preprocessed/{split}/{split}.json.gz"
-R2R_V13_GT_PATH = "../datasets/datasets/R2R_VLNCE_v1-3_preprocessed/{split}/{split}_gt.json.gz"
-
-
-def use_r2r_v13_dataset_for_cross_floor_all(config) -> None:
-    """Switch OpenNav100-style baselines to the full R2R v1-3 split for r2r-all."""
-    config.TASK_CONFIG.DATASET.DATA_PATH = R2R_V13_DATA_PATH
-    config.TASK_CONFIG.TASK.NDTW.GT_PATH = R2R_V13_GT_PATH
-    config.TASK_CONFIG.TASK.SDTW.GT_PATH = R2R_V13_GT_PATH
+from shared.benchmark_runner import (
+    apply_cross_floor_filter_to_config,
+    apply_requested_episode_filter_to_config,
+    apply_resume_filter_to_config,
+)
+from shared.episode_filter import parse_episode_ids
 
 
 def main():
@@ -140,49 +133,32 @@ def run_exp(exp_name: str, exp_config: str,
     config.SSA_ORACLE_EXIT_ENABLE = bool(oracle_exit_enable)
 
     if cross_floor_filter is not None:
+        allowed = apply_cross_floor_filter_to_config(config, cross_floor_filter)
         if cross_floor_filter == "r2r-all":
-            use_r2r_v13_dataset_for_cross_floor_all(config)
             print(f"Using R2R v1-3 dataset for cross-floor filter [{cross_floor_filter}]")
-        from cross_floor_filter import get_cross_floor_episode_ids
-        allowed = get_cross_floor_episode_ids(cross_floor_filter)
-        config.TASK_CONFIG.DATASET.EPISODES_ALLOWED = allowed
         print(f"Cross-floor filter [{cross_floor_filter}]: {len(allowed)} episodes")
 
     requested_episode_ids = parse_episode_ids(episode_id)
     if requested_episode_ids:
-        current_allowed = config.TASK_CONFIG.DATASET.EPISODES_ALLOWED
-        if current_allowed is None:
-            import habitat
-            dataset = habitat.make_dataset(
-                config.TASK_CONFIG.DATASET.TYPE, config=config.TASK_CONFIG.DATASET
-            )
-            current_allowed = [ep.episode_id for ep in dataset.episodes]
-        before = len(current_allowed)
-        allowed = filter_episode_ids(current_allowed, requested_episode_ids)
-        config.TASK_CONFIG.DATASET.EPISODES_ALLOWED = allowed
+        before, after = apply_requested_episode_filter_to_config(
+            config,
+            requested_episode_ids,
+            source="habitat",
+        )
         print(
             f"Episode-id filter [{','.join(requested_episode_ids)}]: "
-            f"{before} -> {len(allowed)} episodes"
+            f"{before} -> {after} episodes"
         )
 
     if resume:
-        completed_ids = collect_completed_episode_ids(config.RESULTS_DIR)
-        if completed_ids:
-            current_allowed = config.TASK_CONFIG.DATASET.EPISODES_ALLOWED
-            if current_allowed is None:
-                import habitat
-                dataset = habitat.make_dataset(
-                    config.TASK_CONFIG.DATASET.TYPE, config=config.TASK_CONFIG.DATASET
-                )
-                current_allowed = [ep.episode_id for ep in dataset.episodes]
-            remaining = filter_remaining_episode_ids(current_allowed, completed_ids)
-            before = len(current_allowed)
-            config.TASK_CONFIG.DATASET.EPISODES_ALLOWED = remaining
+        result = apply_resume_filter_to_config(config, config.RESULTS_DIR, source="habitat")
+        if result is not None:
+            before, after = result
             print(
-                f"Resume filter: {before} -> {len(remaining)} episodes "
-                f"(skipped {before - len(remaining)} completed from {config.RESULTS_DIR})"
+                f"Resume filter: {before} -> {after} episodes "
+                f"(skipped {before - after} completed from {config.RESULTS_DIR})"
             )
-            if not remaining:
+            if after == 0:
                 print("Resume filter found no remaining episodes. Nothing to run.")
                 config.freeze()
                 return

@@ -10,6 +10,9 @@ from pathlib import Path
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
+from shared.evaluation_selection import filter_ids_by_cross_floor
+from shared.results import aggregate_numeric_metrics
+from shared.resume_utils import append_episode_metric
 from collections import defaultdict
 from typing import Dict, List
 from PIL import Image
@@ -682,7 +685,6 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                             total=episodes_to_eval,
                         )
                     )
-                    from resume_utils import append_episode_metric
                     append_episode_metric(
                         config.RESULTS_DIR,
                         f"episode_results_{config.TASK_CONFIG.DATASET.SPLIT}_r{self.local_rank}_w{self.world_size}.json",
@@ -762,21 +764,12 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             pbar.close()
         if self.world_size > 1:
             distr.barrier()
-        aggregated_stats = {}
-        valid_stats = [value for value in stats_episodes.values() if value is not None]
+        valid_stats = [value for value in stats_episodes.values() if isinstance(value, dict)]
         num_episodes = len(valid_stats)
         if num_episodes == 0:
             logger.info("No newly evaluated episodes with metrics were produced in this run.")
             return
-        numeric_keys = []
-        for stat_key in valid_stats[0].keys():
-            if all(isinstance(v.get(stat_key), (int, float)) for v in valid_stats):
-                numeric_keys.append(stat_key)
-        for stat_key in numeric_keys:
-            aggregated_stats[stat_key] = (
-                sum(v[stat_key] for v in valid_stats)
-                / num_episodes
-            )
+        aggregated_stats = aggregate_numeric_metrics(stats_episodes)
         total = torch.tensor(num_episodes).cpu()
         if self.world_size > 1:
             dist.reduce(total,dst=0)
@@ -827,10 +820,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         # Apply cross-floor filter if EPISODES_ALLOWED is explicitly set
         allowed = self.config.TASK_CONFIG.DATASET.EPISODES_ALLOWED
         if allowed is not None:
-            allowed_set = set(allowed)
-            # trajectories are always str (JSON dict keys); allowed may be int or str
-            trajectories = [t for t in trajectories
-                            if t in allowed_set or int(t) in allowed_set]
+            trajectories = filter_ids_by_cross_floor(trajectories, allowed)
         return trajectories
         
     def eval(self) -> None:
