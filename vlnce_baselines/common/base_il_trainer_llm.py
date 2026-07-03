@@ -661,12 +661,13 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                         assert collisions_.shape[0] == positions_.shape[0] - 1
                     else:
                         positions_ = np.array(dis_to_con(np.array(info['position']['position']))).astype(float)
+                        collisions_ = np.zeros(max(len(positions_) - 1, 0), dtype=float)
                     distance = np.array(info['position']['distance']).astype(float)
                     metric['distance_to_goal'] = distance[-1]
                     metric['success'] = 1. if distance[-1] <= 3. else 0.
                     metric['oracle_success'] = 1. if (distance <= 3.).any() else 0.
                     metric['path_length'] = np.linalg.norm(positions_[1:] - positions_[:-1],axis=1).sum()
-                    metric['collisions'] = collisions_.mean()
+                    metric['collisions'] = float(collisions_.mean()) if collisions_.size else 0.0
                     gt_length = distance[0]
                     metric['spl'] = metric['success']*gt_length/max(gt_length,metric['path_length'])
 
