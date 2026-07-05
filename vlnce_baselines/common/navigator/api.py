@@ -17,7 +17,12 @@ sys.path.insert(0, os.path.join(MODELS_ROOT, "recognize_anything_code"))
 sys.path.insert(0, MODELS_ROOT)
 
 from tenacity import retry, wait_random_exponential, stop_after_attempt
-from shared.llm_adapter import build_chat_extra_body, extract_message_text, normalize_api_key
+from shared.llm_adapter import (
+    build_chat_extra_body,
+    build_multimodal_messages,
+    extract_message_text,
+    normalize_api_key,
+)
 
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -113,6 +118,42 @@ class llmClient:
                 chat_response = self._completion_with_backoff(**request_params)
                 responses.append(extract_message_text(chat_response.choices[0].message))
             return responses
+
+    def gpt_infer_with_images(self, system_prompt, user_prompt, images, num_output=1, return_usage=False):
+        messages = build_multimodal_messages(system_prompt, user_prompt, images)
+        request_params = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0,
+            "max_tokens": int(os.environ.get("OPENAI_MAX_TOKENS", "2048")),
+        }
+        extra_body = build_chat_extra_body(self.model)
+        if extra_body:
+            request_params["extra_body"] = extra_body
+
+        if num_output == 1:
+            chat_response = self._completion_with_backoff(**request_params)
+            answer = extract_message_text(chat_response.choices[0].message)
+            if return_usage:
+                usage = getattr(chat_response, "usage", None)
+                return answer, {
+                    "input_tokens": getattr(usage, "prompt_tokens", 0) if usage else 0,
+                    "output_tokens": getattr(usage, "completion_tokens", 0) if usage else 0,
+                }
+            return answer
+
+        responses = []
+        total_usage = {"input_tokens": 0, "output_tokens": 0}
+        for _ in range(num_output):
+            chat_response = self._completion_with_backoff(**request_params)
+            responses.append(extract_message_text(chat_response.choices[0].message))
+            usage = getattr(chat_response, "usage", None)
+            if usage:
+                total_usage["input_tokens"] += getattr(usage, "prompt_tokens", 0)
+                total_usage["output_tokens"] += getattr(usage, "completion_tokens", 0)
+        if return_usage:
+            return responses, total_usage
+        return responses
 
     
 class spatialClient:
