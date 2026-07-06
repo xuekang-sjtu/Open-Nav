@@ -12,7 +12,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 from shared.evaluation_selection import filter_ids_by_cross_floor
 from shared.results import aggregate_numeric_metrics
-from shared.resume_utils import append_episode_metric
+from shared.resume_utils import append_episode_metric, load_episode_metrics
 from collections import defaultdict
 from typing import Dict, List
 from PIL import Image
@@ -595,6 +595,8 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                         )
                         batch = batch_obs(observations, self.device)
                         batch = apply_obs_transforms_batch(batch, obs_transforms)
+                        if current_step >= step_length:
+                            dones[0] = True
                         if not dones[0]:
                             continue
                         dones[0] = True
@@ -765,6 +767,15 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             pbar.close()
         if self.world_size > 1:
             distr.barrier()
+        split = config.TASK_CONFIG.DATASET.SPLIT
+        episode_results_filename = (
+            f"episode_results_{split}_r{self.local_rank}_w{self.world_size}.json"
+        )
+        merged_stats = load_episode_metrics(config.RESULTS_DIR, episode_results_filename)
+        merged_stats.update({str(key): value for key, value in stats_episodes.items() if isinstance(value, dict)})
+        if merged_stats:
+            stats_episodes = merged_stats
+
         valid_stats = [value for value in stats_episodes.values() if isinstance(value, dict)]
         num_episodes = len(valid_stats)
         if num_episodes == 0:
@@ -785,7 +796,6 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 v = (sum(cat_v)/total).item()
                 aggregated_stats[k] = v
 
-        split = config.TASK_CONFIG.DATASET.SPLIT
         fname = os.path.join(
             config.RESULTS_DIR,
             f"stats_ep_ckpt_{split}_r{self.local_rank}_w{self.world_size}.json",

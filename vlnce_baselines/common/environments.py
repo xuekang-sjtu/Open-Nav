@@ -133,6 +133,23 @@ class VLNCEDaggerEnv(habitat.RLEnv):
         sim = getattr(self._env, "sim", None)
         value = getattr(sim, "previous_step_collided", False)
         return bool(value() if callable(value) else value)
+
+    def _ssa_adjust_episode_step_count(self, delta: int):
+        env = self._env
+        env._elapsed_steps = max(0, int(getattr(env, "_elapsed_steps", 0)) + int(delta))
+        measures = getattr(getattr(env, "task", None), "measurements", None)
+        step_measure = getattr(measures, "measures", {}).get("steps_taken") if measures is not None else None
+        if step_measure is not None and hasattr(step_measure, "_metric"):
+            step_measure._metric = max(0.0, float(step_measure._metric) + float(delta))
+        task_active = bool(getattr(getattr(env, "task", None), "is_episode_active", True))
+        if not task_active:
+            env._episode_over = True
+        elif env._max_episode_steps > 0:
+            env._episode_over = env._elapsed_steps >= env._max_episode_steps
+        return {
+            "elapsed_steps": int(env._elapsed_steps),
+            "episode_over": bool(env._episode_over),
+        }
         
 
 @baseline_registry.register_env(name="VLNCEInferenceEnv")
