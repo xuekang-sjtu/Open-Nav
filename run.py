@@ -80,6 +80,7 @@ def main():
     parser.add_argument("--ssa-checkpoint", type=str, default="")
     parser.add_argument("--ssa-detect-threshold", type=float, default=0.30)
     parser.add_argument("--ssa-detector-model-source", type=str, default="")
+    parser.add_argument("--ssa-max-takeovers-per-episode", type=int, default=1)
     parser.add_argument("--oracle-exit-enable", action="store_true", help="Use expert-path oracle exit as SSA diagnostic fallback.")
     parser.add_argument("--filter-behind", action="store_true", help="Reject SSA proposals where the predicted target is behind the agent.")
     args = parser.parse_args()
@@ -104,6 +105,7 @@ def run_exp(exp_name: str, exp_config: str,
             resume: bool = False, ssa_guidance: bool = False,
             ssa_checkpoint: str = "", ssa_detect_threshold: float = 0.30,
             ssa_detector_model_source: str = "", filter_behind: bool = False,
+            ssa_max_takeovers_per_episode: int = 1,
             oracle_exit_enable: bool = False, episode_id: str = None) -> None:
     r"""Runs experiment given mode and config
     """
@@ -131,6 +133,7 @@ def run_exp(exp_name: str, exp_config: str,
     config.SSA_DETECTOR_MODEL_SOURCE = str(ssa_detector_model_source)
     config.SSA_FILTER_BEHIND = bool(filter_behind)
     config.SSA_ORACLE_EXIT_ENABLE = bool(oracle_exit_enable)
+    config.SSA_MAX_TAKEOVERS_PER_EPISODE = int(ssa_max_takeovers_per_episode)
 
     if cross_floor_filter is not None:
         allowed = apply_cross_floor_filter_to_config(config, cross_floor_filter)
