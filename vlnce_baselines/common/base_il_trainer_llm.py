@@ -614,7 +614,6 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                             dones[0] = True
                         if not dones[0]:
                             continue
-                        dones[0] = True
                         ssa_takeover_finished_episode = True
                     if not ssa_takeover_finished_episode:
                         env_actions = []
