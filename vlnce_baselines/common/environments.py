@@ -66,6 +66,16 @@ class VLNCEDaggerEnv(habitat.RLEnv):
             source_rotation,
             keep_agent_at_new_pose)
 
+    def _ssa_set_agent_pose(self, position: List[float], yaw: Optional[float] = None):
+        sim = self._env.sim
+        init_state = sim.get_agent_state()
+        rotation = init_state.rotation
+        if yaw is not None:
+            angle = float(yaw) + np.pi
+            rotation = np.quaternion(np.cos(angle / 2.0), 0, np.sin(angle / 2.0), 0)
+        sim.set_agent_state(np.asarray(position, dtype=np.float32), rotation)
+        return sim.get_sensor_observations()
+
     def observations_by_angles(self, angle_list: List[float]):
         r'''for getting observations from desired angles
         requires rad, positive represents anticlockwise'''

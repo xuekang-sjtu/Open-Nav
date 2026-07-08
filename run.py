@@ -81,6 +81,9 @@ def main():
     parser.add_argument("--ssa-detect-threshold", type=float, default=0.30)
     parser.add_argument("--ssa-detector-model-source", type=str, default="")
     parser.add_argument("--ssa-max-takeovers-per-episode", type=int, default=1)
+    parser.add_argument("--disable-ssa-oracle-entry-gate", action="store_true", help="Disable oracle entry-position gate for SSA takeover.")
+    parser.add_argument("--ssa-oracle-entry-radius", type=float, default=1.5, help="Entry radius in meters for oracle SSA gate.")
+    parser.add_argument("--expert-entry-pose", action="store_true", help="Teleport to expert stair entry pose before SSA takeover for diagnostics.")
     parser.add_argument("--oracle-exit-enable", action="store_true", help="Use expert-path oracle exit as SSA diagnostic fallback.")
     parser.add_argument("--filter-behind", action="store_true", help="Reject SSA proposals where the predicted target is behind the agent.")
     parser.add_argument("--save-episode-gif", dest="save_episode_gif", action="store_true", default=True, help="Save one low-level RGB GIF per evaluated episode.")
@@ -110,6 +113,9 @@ def run_exp(exp_name: str, exp_config: str,
             ssa_checkpoint: str = "", ssa_detect_threshold: float = 0.30,
             ssa_detector_model_source: str = "", filter_behind: bool = False,
             ssa_max_takeovers_per_episode: int = 1,
+            disable_ssa_oracle_entry_gate: bool = False,
+            ssa_oracle_entry_radius: float = 1.5,
+            expert_entry_pose: bool = False,
             save_episode_gif: bool = True, gif_max_width: int = 640,
             gif_duration: float = 0.4, oracle_exit_enable: bool = False,
             episode_id: str = None) -> None:
@@ -139,6 +145,9 @@ def run_exp(exp_name: str, exp_config: str,
     config.SSA_DETECTOR_MODEL_SOURCE = str(ssa_detector_model_source)
     config.SSA_FILTER_BEHIND = bool(filter_behind)
     config.SSA_ORACLE_EXIT_ENABLE = bool(oracle_exit_enable)
+    config.SSA_ORACLE_ENTRY_GATE_ENABLE = not bool(disable_ssa_oracle_entry_gate)
+    config.SSA_ORACLE_ENTRY_RADIUS = float(ssa_oracle_entry_radius)
+    config.SSA_EXPERT_ENTRY_POSE = bool(expert_entry_pose)
     config.SSA_MAX_TAKEOVERS_PER_EPISODE = int(ssa_max_takeovers_per_episode)
     config.SAVE_EPISODE_GIF = bool(save_episode_gif)
     config.EPISODE_GIF_MAX_WIDTH = int(gif_max_width)
