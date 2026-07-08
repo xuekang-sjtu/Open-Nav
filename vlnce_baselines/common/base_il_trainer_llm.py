@@ -70,6 +70,8 @@ from shared.eval_metrics import format_episode_metric
 from shared.ssa import SSAController, execute_ssa_takeover
 from shared.ssa.oracle import select_oracle_exit_for_episode
 from shared.ssa.trajectory import save_trajectory_debug
+from shared.navigation import select_executable_candidate
+from shared.visualization import EpisodeGifRecorder
 
 
 def _ssa_front_view(images_dict):
@@ -344,6 +346,16 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         observations = envs.reset()
         
         instruction, images_list = self.generate_input(observations[-1])
+        episode_gif = EpisodeGifRecorder(
+            os.path.join(config.RESULTS_DIR, "episode_gifs"),
+            enabled=bool(getattr(config, "SAVE_EPISODE_GIF", True)),
+            max_width=int(getattr(config, "EPISODE_GIF_MAX_WIDTH", 640)),
+            duration=float(getattr(config, "EPISODE_GIF_DURATION", 0.4)),
+        )
+        episode_gif.add_observation(
+            observations[-1],
+            label=f"start ep={envs.current_episodes()[0].episode_id}",
+        )
         observations = extract_instruction_tokens(
             observations, self.config.TASK_CONFIG.TASK.INSTRUCTION_SENSOR_UUID
         ) 
@@ -477,6 +489,23 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 
                 nav_logger.info("========== Test Decision ==========")
                 next_vp, thought, error_number = navigator.test_decisions(nav_logger, fused_pred_thought, observation, instruction, error_number, observe_dict)
+                requested_vp = next_vp
+                next_vp, remapped = select_executable_candidate(
+                    next_vp,
+                    radius=radius_dict,
+                    distance=distance_dict,
+                    observations=observe_dict,
+                )
+                if next_vp is None:
+                    nav_logger.warning(
+                        "No executable waypoint candidate remains after filtering; stopping episode to avoid invalid Habitat action"
+                    )
+                    stop_flag = True
+                    next_vp = requested_vp
+                elif remapped:
+                    nav_logger.warning(
+                        f"Predicted viewpoint {requested_vp} is not executable; fallback to viewpoint {next_vp}"
+                    )
                 selected_ssa_view = images_dict.get(next_vp)
                 selected_ssa_yaw_deg = _ssa_view_yaw_deg(radius_dict[next_vp]) if next_vp in radius_dict else 0.0
                 current_stage_text = _ssa_current_stage_from_estimation(actions, estimation)
@@ -579,6 +608,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                             ),
                         )
                         nav_logger.info(f"[SSA] takeover finished | success={takeover.success} reason={takeover.reason} actions={takeover.actions_executed}")
+                        episode_gif.extend_frames(takeover.rgb_frames, source="ssa")
                         observations = takeover.observations
                         dones = takeover.dones
                         infos = takeover.infos
@@ -629,8 +659,12 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                         curr_observe = observe_dict[next_vp]
                         nav_logger.info("========== save history ==========")
                         nav_history = navigator.save_history(nav_logger, current_step, next_vp, thought, curr_observe, nav_history)
-                    
+                        
                         observations, _, dones, infos = [list(x) for x in zip(*outputs)]
+                        episode_gif.add_observation(
+                            observations[-1],
+                            label=f"baseline step={current_step}",
+                        )
                         instruction, images_list = self.generate_input(observations[-1])
                         error_number = 0 
                         # finish navigation
@@ -670,6 +704,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                     metric["ssa_summary"] = ssa_summary
                     metric["ssa_trace_path"] = ssa_trace_path
                     ep_id = str(envs.current_episodes()[i].episode_id)
+                    episode_gif.save(ep_id)
                     gt_path = np.array(self.gt_data[ep_id]['locations']).astype(float)
                     if 'current_path' in envs.current_episodes()[i].info.keys():
                         positions_ = np.array(envs.current_episodes()[i].info['current_path']).astype(float)
@@ -731,6 +766,11 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                     )
 
                     observations[i] = envs.reset_at(i)[0]
+                    episode_gif.reset()
+                    episode_gif.add_observation(
+                        observations[i],
+                        label=f"start ep={envs.current_episodes()[i].episode_id}",
+                    )
                     instruction, images_list = self.generate_input(observations[i])
                     
                     if config.use_pbar:
