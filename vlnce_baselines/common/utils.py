@@ -13,16 +13,14 @@ def extract_instruction_tokens(
     exist and are in a dict structure.
     """
     for i in range(len(observations)):
-        if (
-            isinstance(observations[i][instruction_sensor_uuid], dict)
-            and tokens_uuid in observations[i][instruction_sensor_uuid]
-        ):
-            token_val = observations[i][instruction_sensor_uuid]["tokens"]
-            if token_val is not None:
-                observations[i][instruction_sensor_uuid] = token_val
+        if isinstance(observations[i][instruction_sensor_uuid], dict):
+            if tokens_uuid in observations[i][instruction_sensor_uuid]:
+                token_val = observations[i][instruction_sensor_uuid]["tokens"]
+                if token_val is not None:
+                    observations[i][instruction_sensor_uuid] = token_val
+                else:
+                    observations[i][instruction_sensor_uuid] = []
             else:
-                # For datasets without tokenized instructions (e.g., RxR),
-                # replace with empty list so batch_obs can handle it.
                 observations[i][instruction_sensor_uuid] = []
         else:
             break
