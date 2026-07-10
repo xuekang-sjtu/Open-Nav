@@ -516,7 +516,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 current_context_text = str(history_traj or "")
                 if selected_ssa_view is not None:
                     ssa_proposal = ssa_controller.update_proposal(
-                        instruction="",
+                        instruction=instruction,
                         previous_output=current_stage_text,
                         previous_plan="",
                         rgb=np.asarray(selected_ssa_view["rgb"]),
@@ -629,6 +629,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                             pre_align_yaw_rad=ssa_pre_align_yaw_rad,
                             oracle_exit=ssa_segment if getattr(config, "SSA_ORACLE_EXIT_ENABLE", False) else None,
                             expert_entry_pose=ssa_segment if getattr(config, "SSA_EXPERT_ENTRY_POSE", False) else None,
+                            env_turn_degrees=float(config.TASK_CONFIG.SIMULATOR.TURN_ANGLE),
                         )
                         nav_logger.info(f"[SSA] takeover finished | success={takeover.success} reason={takeover.reason} actions={takeover.actions_executed}")
                         episode_gif.extend_frames(takeover.rgb_frames, source="ssa")
@@ -644,10 +645,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                                 current_step,
                                 {"0": final_ssa_view},
                             )
-                            ssa_thought = (
-                                f"SSA takeover executed {takeover.actions_executed} waypoint steps; "
-                                f"result={takeover.reason}."
-                            )
+                            ssa_thought = ssa_controller.latest_handoff_text()
                             nav_logger.info("========== save SSA history ==========")
                             nav_history = navigator.save_history(
                                 nav_logger,
@@ -664,6 +662,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                         )
                         batch = batch_obs(observations, self.device)
                         batch = apply_obs_transforms_batch(batch, obs_transforms)
+                        error_number = 0
                         if current_step >= step_length:
                             dones[0] = True
                         if not dones[0]:
