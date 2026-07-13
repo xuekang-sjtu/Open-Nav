@@ -67,10 +67,17 @@ from ..models.utils import (
     length2mask, dir_angle_feature, dir_angle_feature_with_ele,
 )
 from shared.eval_metrics import format_episode_metric
-from shared.ssa import SSAController, execute_ssa_takeover
+from shared.ssa import (
+    SSAController,
+    execute_oracle_expert_replay,
+    execute_ssa_takeover,
+    expert_actions_for_segment,
+    expert_record_for_episode,
+)
 from shared.ssa.oracle import proposal_oracle_segment
 from shared.ssa.trajectory import save_trajectory_debug
 from shared.navigation import select_executable_candidate
+from shared.trajectory_metrics import metric_positions
 from shared.visualization import EpisodeGifRecorder
 
 
@@ -424,6 +431,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
             oracle_entry_gate_enabled=getattr(config, "SSA_ORACLE_ENTRY_GATE_ENABLE", True),
             oracle_entry_radius_m=getattr(config, "SSA_ORACLE_ENTRY_RADIUS", 1.5),
             max_takeovers_per_episode=int(getattr(config, "SSA_MAX_TAKEOVERS_PER_EPISODE", 1)),
+            oracle_expert_replay=bool(getattr(config, "SSA_ORACLE_EXPERT_REPLAY", False)),
         )
         current_step = 0
         nav_history = []
@@ -614,23 +622,37 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                             ssa_proposal,
                             required=(
                                 bool(getattr(config, "SSA_EXPERT_ENTRY_POSE", False))
+                                or bool(getattr(config, "SSA_ORACLE_EXPERT_REPLAY", False))
                                 or bool(getattr(config, "SSA_ORACLE_EXIT_ENABLE", False))
                             ),
                             context="Open-Nav",
                         )
-                        takeover = execute_ssa_takeover(
-                            envs,
+                        takeover_kwargs = dict(
+                            envs=envs,
                             env_index=0,
                             controller=ssa_controller,
                             initial_observation=_ssa_restore_instruction(observations[-1]),
                             get_forward_view=_ssa_get_forward_view,
                             direction=ssa_takeover_direction,
                             step=current_step,
-                            pre_align_yaw_rad=ssa_pre_align_yaw_rad,
-                            oracle_exit=ssa_segment if getattr(config, "SSA_ORACLE_EXIT_ENABLE", False) else None,
-                            expert_entry_pose=ssa_segment if getattr(config, "SSA_EXPERT_ENTRY_POSE", False) else None,
-                            env_turn_degrees=float(config.TASK_CONFIG.SIMULATOR.TURN_ANGLE),
                         )
+                        if getattr(config, "SSA_ORACLE_EXPERT_REPLAY", False):
+                            episode_record = expert_record_for_episode(
+                                self.gt_data, current_episodes[0].episode_id
+                            )
+                            takeover = execute_oracle_expert_replay(
+                                **takeover_kwargs,
+                                oracle_segment=ssa_segment,
+                                expert_actions=expert_actions_for_segment(episode_record, ssa_segment),
+                            )
+                        else:
+                            takeover = execute_ssa_takeover(
+                                **takeover_kwargs,
+                                pre_align_yaw_rad=ssa_pre_align_yaw_rad,
+                                oracle_exit=ssa_segment if getattr(config, "SSA_ORACLE_EXIT_ENABLE", False) else None,
+                                expert_entry_pose=ssa_segment if getattr(config, "SSA_EXPERT_ENTRY_POSE", False) else None,
+                                env_turn_degrees=float(config.TASK_CONFIG.SIMULATOR.TURN_ANGLE),
+                            )
                         nav_logger.info(f"[SSA] takeover finished | success={takeover.success} reason={takeover.reason} actions={takeover.actions_executed}")
                         episode_gif.extend_frames(takeover.rgb_frames, source="ssa")
                         observations = takeover.observations
@@ -736,6 +758,7 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                     else:
                         positions_ = np.array(dis_to_con(np.array(info['position']['position']))).astype(float)
                         collisions_ = np.zeros(max(len(positions_) - 1, 0), dtype=float)
+                    positions_ = metric_positions(positions_)
                     distance = np.array(info['position']['distance']).astype(float)
                     metric['distance_to_goal'] = distance[-1]
                     metric['success'] = 1. if distance[-1] <= 3. else 0.

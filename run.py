@@ -84,6 +84,7 @@ def main():
     parser.add_argument("--disable-ssa-oracle-entry-gate", action="store_true", help="Disable oracle entry-position gate for SSA takeover.")
     parser.add_argument("--ssa-oracle-entry-radius", type=float, default=1.5, help="Entry radius in meters for oracle SSA gate.")
     parser.add_argument("--expert-entry-pose", action="store_true", help="Teleport to expert stair entry pose before SSA takeover for diagnostics.")
+    parser.add_argument("--ssa-oracle-expert-replay", action="store_true", help="Replay exact expert stair actions instead of the SSA policy.")
     parser.add_argument("--oracle-exit-enable", action="store_true", help="Use expert-path oracle exit as SSA diagnostic fallback.")
     parser.add_argument("--filter-behind", action="store_true", help="Reject SSA proposals where the predicted target is behind the agent.")
     parser.add_argument("--save-episode-gif", dest="save_episode_gif", action="store_true", default=True, help="Save one low-level RGB GIF per evaluated episode.")
@@ -116,6 +117,7 @@ def run_exp(exp_name: str, exp_config: str,
             disable_ssa_oracle_entry_gate: bool = False,
             ssa_oracle_entry_radius: float = 1.5,
             expert_entry_pose: bool = False,
+            ssa_oracle_expert_replay: bool = False,
             save_episode_gif: bool = True, gif_max_width: int = 640,
             gif_duration: float = 0.4, oracle_exit_enable: bool = False,
             episode_id: str = None) -> None:
@@ -133,11 +135,14 @@ def run_exp(exp_name: str, exp_config: str,
     config.TASK_CONFIG.SEED = 0
     config.local_rank = local_rank
 
+    if ssa_oracle_expert_replay and (not ssa_guidance or disable_ssa_oracle_entry_gate):
+        raise ValueError("--ssa-oracle-expert-replay requires --ssa-guidance and the oracle entry gate")
+
     if llm is not None:
         config.LLM = llm
     if api_key is not None:
         config.API_KEY = api_key
-    if ssa_guidance and not str(ssa_checkpoint or "").strip():
+    if ssa_guidance and not ssa_oracle_expert_replay and not str(ssa_checkpoint or "").strip():
         raise ValueError("--ssa-guidance requires an explicit --ssa-checkpoint")
     config.SSA_GUIDANCE = bool(ssa_guidance)
     config.SSA_CHECKPOINT = str(ssa_checkpoint)
@@ -148,6 +153,7 @@ def run_exp(exp_name: str, exp_config: str,
     config.SSA_ORACLE_ENTRY_GATE_ENABLE = not bool(disable_ssa_oracle_entry_gate)
     config.SSA_ORACLE_ENTRY_RADIUS = float(ssa_oracle_entry_radius)
     config.SSA_EXPERT_ENTRY_POSE = bool(expert_entry_pose)
+    config.SSA_ORACLE_EXPERT_REPLAY = bool(ssa_oracle_expert_replay)
     config.SSA_MAX_TAKEOVERS_PER_EPISODE = int(ssa_max_takeovers_per_episode)
     config.SAVE_EPISODE_GIF = bool(save_episode_gif)
     config.EPISODE_GIF_MAX_WIDTH = int(gif_max_width)

@@ -76,6 +76,19 @@ class VLNCEDaggerEnv(habitat.RLEnv):
         sim.set_agent_state(np.asarray(position, dtype=np.float32), rotation)
         return sim.get_sensor_observations()
 
+    def _ssa_set_turn_angle(self, degrees: float) -> float:
+        action_space = self._env.sim.get_agent(0).agent_config.action_space
+        left = action_space[HabitatSimActions.TURN_LEFT].actuation
+        right = action_space[HabitatSimActions.TURN_RIGHT].actuation
+        if not np.isclose(left.amount, right.amount):
+            raise RuntimeError(
+                f"Open-Nav turn actions disagree: left={left.amount} right={right.amount}"
+            )
+        previous = float(left.amount)
+        left.amount = float(degrees)
+        right.amount = float(degrees)
+        return previous
+
     def observations_by_angles(self, angle_list: List[float]):
         r'''for getting observations from desired angles
         requires rad, positive represents anticlockwise'''
