@@ -979,19 +979,18 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
         self.config.TASK_CONFIG.TASK.NDTW.SPLIT = self.config.EVAL.SPLIT
         self.config.TASK_CONFIG.TASK.SDTW.SPLIT = self.config.EVAL.SPLIT
         self.config.use_pbar = not is_slurm_batch_job()
-        if 'rxr' in self.config.BASE_TASK_CONFIG_PATH:
-            self.config.EVAL.trajectories_file = \
-                self.config.EVAL.trajectories_file[:-8] + '_w' + \
-                str(self.world_size) + '_r' + str(self.local_rank) + '.json.gz'
         
         # if choosing image
-        resize_config = self.config.RL.POLICY.OBS_TRANSFORMS.RESIZER_PER_SENSOR.SIZES
+        transforms_config = self.config.RL.POLICY.OBS_TRANSFORMS
+        resize_config = transforms_config.RESIZER_PER_SENSOR.SIZES
+        crop_config = transforms_config.CENTER_CROPPER_PER_SENSOR.SENSOR_CROPS
         config = self.config.TASK_CONFIG
         camera_orientations = get_camera_orientations(12)
 
         # sensor_uuids = []
         for sensor_type in ["RGB", "DEPTH"]:
             resizer_size = dict(resize_config)[sensor_type.lower()]
+            crop_size = dict(crop_config)[sensor_type.lower()]
             sensor = getattr(config.SIMULATOR, f"{sensor_type}_SENSOR")
             for action, orient in camera_orientations.items():
                 camera_template = f"{sensor_type}_{action}"
@@ -1002,7 +1001,9 @@ class BaseVLNCETrainerLLM(BaseILTrainer):
                 setattr(config.SIMULATOR, camera_template, camera_config)
                 config.SIMULATOR.AGENT_0.SENSORS.append(camera_template)
                 resize_config.append((camera_template.lower(), resizer_size))
-        self.config.RL.POLICY.OBS_TRANSFORMS.RESIZER_PER_SENSOR.SIZES = resize_config
+                crop_config.append((camera_template.lower(), crop_size))
+        transforms_config.RESIZER_PER_SENSOR.SIZES = resize_config
+        transforms_config.CENTER_CROPPER_PER_SENSOR.SENSOR_CROPS = crop_config
         self.config.TASK_CONFIG = config
         self.config.SENSORS = config.SIMULATOR.AGENT_0.SENSORS
         
